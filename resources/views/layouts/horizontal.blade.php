@@ -225,8 +225,8 @@
                     <!-- @if(\Cookie::get('Layout') == 'LayoutNoSidebar')
                     <a class="dropdown-item" href="{{route('layoutsidebar')}}"><i class="bx bx-layout font-size-16 align-middle me-1"></i> <span key="t-profile">Change Layout</span></a>
                     @endif
-                    @if(\Cookie::get('Layout') == 'layoutsidebar')
-                    <a class="dropdown-item" href="{{route('LayoutNoSidebar')}}"><i class="bx bx-layout font-size-16 align-middle me-1"></i> <span key="t-profile">Change Layout</span></a>
+                    @if(\Cookie::get('Layout') == 'Layoutsidebar')
+                    <a class="dropdown-item" href="{{route('layoutNoSidebar')}}"><i class="bx bx-layout font-size-16 align-middle me-1"></i> <span key="t-profile">Change Layout</span></a>
                     @endif -->
 
                     <div class="dropdown-divider"></div>
