@@ -98,7 +98,8 @@ public function Delete(Expense $data)
       -> join('look_ups as b', 'expenses.Item_ID', '=', 'b.id')
       -> join('look_ups as c', 'expenses.Currency_ID', '=', 'c.id')
       -> select('expenses.*', 'a.FirstName as UFirstName', 'a.LastName as ULastName', 'b.Name as Item', 'c.Name as Currency')
-      -> paginate(100)->sortByDesc('Date');
+      ->sortByDesc('Date')
+      -> paginate(100);
       $AllHomeExpenses = Expense::Where("Type_ID", "=",$Type_Name -> id)->sum('Amount');
       $ThisYearHomeExpenses = Expense::Where("Type_ID", "=",$Type_Name -> id)->whereYear("Date", "=", now() -> format('Y'))->sum('Amount');
       $ThisMonthHomeExpenses = Expense::Where("Type_ID", "=",$Type_Name -> id)->whereYear("Date", "=", now() -> format('Y'))->whereMonth("Date", "=", now() -> format('m'))->sum('Amount');
