@@ -10,15 +10,15 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-3 col-sm-12 mb-2">
+    <div class="col-md-4 col-sm-12 mb-2">
         <select class="form-select  form-select-lg @error('Country') is-invalid @enderror" onchange="window.location.href = this.value;">
             @foreach($mainLookUps as $mainLookUp)
             <option value="{{route('SearchByMainLookUp', ['data' => $mainLookUp -> Name])}}">{{ $mainLookUp -> Name}}</option>
             @endforeach
         </select>
-    </div>
-   
-    <div class="col-md-5 col-sm-12 mb-2">
+    </div> 
+    <div class="col-md-2 col-sm-12 mb-2"> </div>  
+    <div class="col-md-6 col-sm-12 mb-2">
         <a href="#" class="btn  btn-lg waves-effect  waves-light  m-1 float-end" data-bs-toggle="tooltip" data-bs-placement="top" title="All Lookups Grid View"> <i class="bx bx-grid-alt font-size-24 align-middle"></i></a>
         <a data-bs-toggle="collapse" data-bs-target="#addLookUp" aria-expanded="false" aria-controls="addLookUp" class="btn btn-outline-success btn-lg waves-effect  waves-light float-end btn-rounded"><i class="mdi mdi-plus me-1"></i>ADD LOOK UP</a>
     </div>
