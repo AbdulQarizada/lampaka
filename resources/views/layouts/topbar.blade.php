@@ -346,9 +346,9 @@
                     <a class="dropdown-item" href="{{route('ProfileUser', ['data' => Auth::user()->id])}}"><i class="bx bx-user font-size-16 align-middle me-1"></i> <span key="t-profile">@lang('translation.Profile')</span></a>
                     <a class="dropdown-item" href="{{route('ProfileUser', ['data' => Auth::user()->id])}}"><i class="bx bx-lock-open font-size-16 align-middle me-1"></i> <span key="t-lock-screen">Change Password</span></a>
                     @if(\Cookie::get('Layout') == 'LayoutNoSidebar')
-                    <a class="dropdown-item" href="{{route('LayoutSidebar')}}"><i class="bx bx-layout font-size-16 align-middle me-1"></i> <span key="t-profile">Change Layout</span></a>
+                    <a class="dropdown-item" href="{{route('Layoutsidebar')}}"><i class="bx bx-layout font-size-16 align-middle me-1"></i> <span key="t-profile">Change Layout</span></a>
                     @endif
-                    @if(\Cookie::get('Layout') == 'LayoutSidebar')
+                    @if(\Cookie::get('Layout') == 'Layoutsidebar')
                     <a class="dropdown-item" href="{{route('LayoutNoSidebar')}}"><i class="bx bx-layout font-size-16 align-middle me-1"></i> <span key="t-profile">Change Layout</span></a>
                     @endif
                     <div class="dropdown-divider"></div>

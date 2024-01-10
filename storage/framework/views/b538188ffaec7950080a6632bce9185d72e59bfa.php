@@ -1,23 +1,22 @@
-@extends(Cookie::get('Layout') == 'Layoutsidebar' ? 'layouts.master' : 'layouts.master-layouts')
-@section('title') System Management @endsection
-@section('css')
-<link href="{{ URL::asset('/assets/css/mystyle/tabstyle.css') }}" rel="stylesheet" type="text/css" />
-@endsection
-@section('content')
+<?php $__env->startSection('title'); ?> System Management <?php $__env->stopSection(); ?>
+<?php $__env->startSection('css'); ?>
+<link href="<?php echo e(URL::asset('/assets/css/mystyle/tabstyle.css')); ?>" rel="stylesheet" type="text/css" />
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
 <div class="row">
     <div class="col-12">
-        <a href="{{route('root')}}" class="btn btn-outline-info btn-lg waves-effect mb-3 btn-label waves-light"><i class="bx bx-left-arrow  font-size-16 label-icon"></i>Back</a>
+        <a href="<?php echo e(route('root')); ?>" class="btn btn-outline-info btn-lg waves-effect mb-3 btn-label waves-light"><i class="bx bx-left-arrow  font-size-16 label-icon"></i>Back</a>
     </div>
 </div>
 <div class="row">
-    @if(Auth::user()->IsSuperAdmin == 1)
+    <?php if(Auth::user()->IsSuperAdmin == 1): ?>
     <h1 class="font-size-24 mt-4 mb-4 fw-medium text-dark text-muted">System Management</h1>
-    @endif
+    <?php endif; ?>
     <div class="col-xl-12">
         <div class="row">
-            @if(Auth::user()->IsSuperAdmin == 1)
+            <?php if(Auth::user()->IsSuperAdmin == 1): ?>
             <div class="col-md-2 mb-2">
-                <a href="{{route('AllUser')}}">
+                <a href="<?php echo e(route('AllUser')); ?>">
                     <div class="card-one  mini-stats-wid border border-secondary">
                         <div class="card-body text-center">
                             <div class="d-flex">
@@ -30,10 +29,10 @@
                     </div>
                 </a>
             </div>
-            @endif
-            @if(Auth::user()->IsSuperAdmin == 1)
+            <?php endif; ?>
+            <?php if(Auth::user()->IsSuperAdmin == 1): ?>
             <div class="col-md-2 mb-2">
-                <a href="{{route('AllErrors')}}">
+                <a href="<?php echo e(route('AllErrors')); ?>">
                     <div class="card-one  mini-stats-wid border border-secondary">
                         <div class="card-body text-center">
                             <div class="d-flex">
@@ -46,10 +45,10 @@
                     </div>
                 </a>
             </div>
-            @endif
-            @if(Auth::user()->IsSuperAdmin == 1)
+            <?php endif; ?>
+            <?php if(Auth::user()->IsSuperAdmin == 1): ?>
             <div class="col-md-2 mb-2">
-                <a href="{{route('AllLookUps')}}">
+                <a href="<?php echo e(route('AllLookUps')); ?>">
                     <div class="card-one  mini-stats-wid border border-secondary">
                         <div class="card-body text-center">
                             <div class="d-flex">
@@ -62,10 +61,11 @@
                     </div>
                 </a>
             </div>
-            @endif
+            <?php endif; ?>
         </div>
     </div>
 </div>
-@endsection
-@section('script')
-@endsection
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('script'); ?>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make(Cookie::get('Layout') == 'Layoutsidebar' ? 'layouts.master' : 'layouts.master-layouts', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\TheStranger\Desktop\Projects\LampakaByte\lampaka\resources\views/SystemManagement/Index.blade.php ENDPATH**/ ?>

@@ -34,8 +34,8 @@
     </div>
     <!-- Begin page -->
     <div id="layout-wrapper">
-        @include('Layouts.topbar')
-        @include('Layouts.sidebar')
+        @include('layouts.topbar')
+        @include('layouts.sidebar')
         <!-- ============================================================== -->
         <!-- Start right Content here -->
         <!-- ============================================================== -->
@@ -47,13 +47,13 @@
                 <!-- container-fluid -->
             </div>
             <!-- End Page-content -->
-            @include('Layouts.footer')
+            @include('layouts.footer')
         </div>
         <!-- end main content-->
     </div>
     <!-- END layout-wrapper -->
     <!-- /Right-bar -->
     <!-- JAVASCRIPT -->
-    @include('Layouts.vendor-scripts')
+    @include('layouts.vendor-scripts')
 </body>
 </html>

@@ -1,4 +1,4 @@
-@extends(Cookie::get('Layout') == 'LayoutSidebar' ? 'Layouts.master' : 'Layouts.master-layouts')
+@extends(Cookie::get('Layout') == 'Layoutsidebar' ? 'layouts.master' : 'layouts.master-layouts')
 @section('title') Dashboard @endsection
 @section('css')
 <link href="{{ URL::asset('/assets/css/mystyle/tabstyle.css') }}" rel="stylesheet" type="text/css" />
@@ -58,7 +58,7 @@
     </div>
 </div>
 @endif
-@if(Cookie::get('Layout') == 'LayoutSidebar')
+@if(Cookie::get('Layout') == 'Layoutsidebar')
 @if(Auth::user()->IsQamarCareCard == 1)
 <div class="row mb-4">
     <div class="col-xl-4 mb-4">

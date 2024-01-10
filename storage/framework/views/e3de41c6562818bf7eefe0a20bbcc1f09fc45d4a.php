@@ -1,20 +1,20 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="<?php echo e(str_replace('_', '-', app()->getLocale())); ?>">
 <head>
     <meta charset="utf-8" />
-    <title> @yield('title') | Qarizada</title>
+    <title> <?php echo $__env->yieldContent('title'); ?> | Qarizada</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- App favicon -->
-    <link rel="shortcut icon" href="{{ URL::asset('assets/images/favicon.ico') }}">
+    <link rel="shortcut icon" href="<?php echo e(URL::asset('assets/images/favicon.ico')); ?>">
     <!-- Bootstrap Css -->
-    <link href="{{ URL::asset('/assets/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <link href="<?php echo e(URL::asset('/assets/css/bootstrap.min.css')); ?>" id="bootstrap-style" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
-    <link href="{{ URL::asset('/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="<?php echo e(URL::asset('/assets/css/icons.min.css')); ?>" rel="stylesheet" type="text/css" />
     <!-- App Css-->
-    <link href="{{ URL::asset('/assets/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
-    @yield('css')
+    <link href="<?php echo e(URL::asset('/assets/css/app.min.css')); ?>" id="app-style" rel="stylesheet" type="text/css" />
+    <?php echo $__env->yieldContent('css'); ?>
 </head>
-@section('body')
+<?php $__env->startSection('body'); ?>
 <body data-topbar="dark" data-layout="horizontal">
     <!-- Loader -->
     <div id="preloader">
@@ -29,11 +29,11 @@
             </div>
         </div>
     </div>
-    @show
-    @include('sweetalert::alert')
+    <?php echo $__env->yieldSection(); ?>
+    <?php echo $__env->make('sweetalert::alert', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <!-- Begin page -->
     <div id="layout-wrapper">
-        @include('layouts.horizontal')
+        <?php echo $__env->make('layouts.horizontal', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
         <!-- ============================================================== -->
         <!-- Start right Content here -->
         <!-- ============================================================== -->
@@ -41,14 +41,14 @@
             <div class="page-content">
                 <!-- Start content -->
                 <div class="container-fluid">
-                    @yield('content')
+                    <?php echo $__env->yieldContent('content'); ?>
                 </div> <!-- content -->
             </div>
             <br />
             <br />
             <br />
             <br />
-            @include('layouts.footer')
+            <?php echo $__env->make('layouts.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
         </div>
         <!-- ============================================================== -->
         <!-- End Right content here -->
@@ -57,6 +57,6 @@
     <!-- END wrapper -->
     <!-- Right bar overlay-->
     <!-- <div class="rightbar-overlay"></div> -->
-    @include('layouts.vendor-scripts')
+    <?php echo $__env->make('layouts.vendor-scripts', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 </body>
-</html>
+</html><?php /**PATH C:\Users\TheStranger\Desktop\Projects\LampakaByte\lampaka\resources\views/layouts/master-layouts.blade.php ENDPATH**/ ?>

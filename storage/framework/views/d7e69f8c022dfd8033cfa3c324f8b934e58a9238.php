@@ -57,7 +57,7 @@
     </div>
 </div>
 <?php endif; ?>
-<?php if(Cookie::get('Layout') == 'LayoutSidebar'): ?>
+<?php if(Cookie::get('Layout') == 'Layoutsidebar'): ?>
 <?php if(Auth::user()->IsQamarCareCard == 1): ?>
 <div class="row mb-4">
     <div class="col-xl-4 mb-4">
@@ -149,4 +149,4 @@
 </script>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make(Cookie::get('Layout') == 'LayoutSidebar' ? 'Layouts.master' : 'Layouts.master-layouts', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\TheStranger\Desktop\Projects\LampakaByte\lampaka\resources\views/index.blade.php ENDPATH**/ ?>
+<?php echo $__env->make(Cookie::get('Layout') == 'Layoutsidebar' ? 'layouts.master' : 'layouts.master-layouts', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\TheStranger\Desktop\Projects\LampakaByte\lampaka\resources\views/index.blade.php ENDPATH**/ ?>

@@ -1,4 +1,4 @@
-@extends(Cookie::get('Layout') == 'LayoutSidebar' ? 'Layouts.master' : 'Layouts.master-layouts')
+@extends(Cookie::get('Layout') == 'Layoutsidebar' ? 'layouts.master' : 'layouts.master-layouts')
 @section('title') Expenses Details @endsection
 @section('css')
 @endsection

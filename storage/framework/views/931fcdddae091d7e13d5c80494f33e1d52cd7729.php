@@ -1,12 +1,11 @@
-@extends(Cookie::get('Layout') == 'Layoutsidebar' ? 'layouts.master' : 'layouts.master-layouts')
-@section('title') System Management @endsection
-@section('css')
-<link href="{{ URL::asset('/assets/css/mystyle/tabstyle.css') }}" rel="stylesheet" type="text/css" />
-@endsection
-@section('content')
+<?php $__env->startSection('title'); ?> System Management <?php $__env->stopSection(); ?>
+<?php $__env->startSection('css'); ?>
+<link href="<?php echo e(URL::asset('/assets/css/mystyle/tabstyle.css')); ?>" rel="stylesheet" type="text/css" />
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
 <div class="row">
     <div class="col-12">
-        <a href="{{route('AllUser')}}" class="btn btn-outline-info btn-lg waves-effect mb-3 btn-label waves-light"><i class="bx bx-left-arrow  font-size-16 label-icon"></i>Back</a>
+        <a href="<?php echo e(route('AllUser')); ?>" class="btn btn-outline-info btn-lg waves-effect mb-3 btn-label waves-light"><i class="bx bx-left-arrow  font-size-16 label-icon"></i>Back</a>
         <a href="javascript:window.print()" class="btn btn-outline-dark mb-3 waves-effect waves-light"><i class=" bx bxs-printer   font-size-18"></i></a>
     </div>
 </div>
@@ -17,14 +16,15 @@
             <table class="table table-nowrap">
                 <tr>
                     <td>
-                        <img src="{{URL::asset('/uploads/User/Profiles/'.$data -> Profile)}}" style="width: 130px; height: 135px;" class="rounded">
+                        <img src="<?php echo e(URL::asset('/uploads/User/Profiles/'.$data -> Profile)); ?>" style="width: 130px; height: 135px;" class="rounded">
                     </td>
                     <td style="float:right;">
                         <div class="">
                             <div class="text-center">
                                 <h4 class="font-size-18 mb-1"><a href="#" class="badge badge-soft-success">Scan Me </a></h4>
                                 <div class="mb-3" class="rounded">
-                                    {!! DNS2D::getBarcodeSVG(''.$data->id, 'QRCODE', 6, 6, true) !!}
+                                    <?php echo DNS2D::getBarcodeSVG(''.$data->id, 'QRCODE', 6, 6, true); ?>
+
                                 </div>
                             </div>
                         </div>
@@ -46,9 +46,9 @@
     <div class="col-md-12">
         <div class="collapse hide" id="addUser">
             <div class="card shadow-none card-body text-muted mb-0 mb-4" style="border: 2px dashed #50a5f1;">
-                <form class="needs-validation" action="{{route('UpdateUser', [$data -> id])}}" method="POST" enctype="multipart/form-data" novalidate>
-                    @method('PUT')
-                    @csrf
+                <form class="needs-validation" action="<?php echo e(route('UpdateUser', [$data -> id])); ?>" method="POST" enctype="multipart/form-data" novalidate>
+                    <?php echo method_field('PUT'); ?>
+                    <?php echo csrf_field(); ?>
                     <div class="checkout-tabs">
                         <div class="row">
                             <div class="col-xl-2 col-sm-3 ">
@@ -71,56 +71,126 @@
                                                             <div class="col-md-4">
                                                                 <div class="mb-3 position-relative">
                                                                     <label for="FirstName" class="form-label ">First Name <i class="mdi mdi-asterisk text-danger"></i></label>
-                                                                    <input type="text" class="form-control form-control-lg @error('FirstName') is-invalid @enderror" value="{{$data -> FirstName}}" id="FirstName" name="FirstName" required>
-                                                                    @error('FirstName')
+                                                                    <input type="text" class="form-control form-control-lg <?php $__errorArgs = ['FirstName'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" value="<?php echo e($data -> FirstName); ?>" id="FirstName" name="FirstName" required>
+                                                                    <?php $__errorArgs = ['FirstName'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
                                                                     <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
+                                                                        <strong><?php echo e($message); ?></strong>
                                                                     </span>
-                                                                    @enderror
+                                                                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-4">
                                                                 <div class="mb-3 position-relative">
                                                                     <label for="LastName" class="form-label ">Last Name <i class="mdi mdi-asterisk text-danger"></i></label>
-                                                                    <input type="text" class="form-control form-control-lg @error('LastName') is-invalid @enderror" value="{{$data -> LastName}}" id="LastName" name="LastName" required>
-                                                                    @error('LastName')
+                                                                    <input type="text" class="form-control form-control-lg <?php $__errorArgs = ['LastName'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" value="<?php echo e($data -> LastName); ?>" id="LastName" name="LastName" required>
+                                                                    <?php $__errorArgs = ['LastName'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
                                                                     <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
+                                                                        <strong><?php echo e($message); ?></strong>
                                                                     </span>
-                                                                    @enderror
+                                                                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-4">
                                                                 <div class="mb-3 position-relative">
                                                                     <label for="FullName" class="form-label ">Full Name </label>
-                                                                    <input type="text" class="form-control form-control-lg @error('FullName') is-invalid @enderror" value="{{$data -> FullName}}" id="FullName" name="FullName" required>
-                                                                    @error('FullName')
+                                                                    <input type="text" class="form-control form-control-lg <?php $__errorArgs = ['FullName'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" value="<?php echo e($data -> FullName); ?>" id="FullName" name="FullName" required>
+                                                                    <?php $__errorArgs = ['FullName'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
                                                                     <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
+                                                                        <strong><?php echo e($message); ?></strong>
                                                                     </span>
-                                                                    @enderror
+                                                                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-4">
                                                                 <div class="mb-3 position-relative">
                                                                     <label for="Job" class="form-label ">Job </label>
-                                                                    <input type="text" class="form-control form-control-lg @error('Job') is-invalid @enderror" value="{{$data -> Job}}" id="Job" name="Job" required>
-                                                                    @error('Job')
+                                                                    <input type="text" class="form-control form-control-lg <?php $__errorArgs = ['Job'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" value="<?php echo e($data -> Job); ?>" id="Job" name="Job" required>
+                                                                    <?php $__errorArgs = ['Job'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
                                                                     <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
+                                                                        <strong><?php echo e($message); ?></strong>
                                                                     </span>
-                                                                    @enderror
+                                                                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-4">
                                                                 <div class="mb-3 position-relative">
                                                                     <label for="email" class="form-label ">Email (User Name)<i class="mdi mdi-asterisk text-danger"></i></label>
-                                                                    <input type="email" class="form-control form-control-lg @error('email') is-invalid @enderror" value="{{$data -> email}}" id="email" name="email" required>
-                                                                    @error('email')
+                                                                    <input type="email" class="form-control form-control-lg <?php $__errorArgs = ['email'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" value="<?php echo e($data -> email); ?>" id="email" name="email" required>
+                                                                    <?php $__errorArgs = ['email'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
                                                                     <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
+                                                                        <strong><?php echo e($message); ?></strong>
                                                                     </span>
-                                                                    @enderror
+                                                                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -147,19 +217,19 @@
             <table class="table table-nowrap">
                 <tr>
                     <td style="width: 20%; border: 2px solid #000; padding: 5px;">First Name</td>
-                    <td style="width: 40%; border: 2px solid #000; padding: 5px;">{{ $data -> FirstName}} </td>
+                    <td style="width: 40%; border: 2px solid #000; padding: 5px;"><?php echo e($data -> FirstName); ?> </td>
                     <td style="width: 20%; border: 2px solid #000; padding: 5px;">Last Name</td>
-                    <td style="width: 40%; border: 2px solid #000; padding: 5px;">{{ $data -> LastName}}</td>
+                    <td style="width: 40%; border: 2px solid #000; padding: 5px;"><?php echo e($data -> LastName); ?></td>
                 </tr>
                 <tr>
                     <td style="width: 20%; border: 2px solid #000; padding: 5px;">Full Name</td>
-                    <td style="width: 40%; border: 2px solid #000; padding: 5px;">{{ $data -> FullName}}</td>
+                    <td style="width: 40%; border: 2px solid #000; padding: 5px;"><?php echo e($data -> FullName); ?></td>
                     <td style="width: 20%; border: 2px solid #000; padding: 5px;">Job</td>
-                    <td style="width: 40%; border: 2px solid #000; padding: 5px;">{{ $data -> Job}}</td>
+                    <td style="width: 40%; border: 2px solid #000; padding: 5px;"><?php echo e($data -> Job); ?></td>
                 </tr>
                 <tr>
                     <td style="width: 20%; border: 2px solid #000; padding: 5px;">Email</td>
-                    <td style="width: 40%; border: 2px solid #000; padding: 5px;">{{ $data -> email }}</td>
+                    <td style="width: 40%; border: 2px solid #000; padding: 5px;"><?php echo e($data -> email); ?></td>
                 </tr>
             </table>
         </div>
@@ -177,9 +247,9 @@
     <div class="col-md-12">
         <div class="collapse hide" id="addRole">
             <div class="card shadow-none card-body text-muted mb-0 mb-4" style="border: 2px dashed #50a5f1;">
-                <form class="needs-validation" action="{{route('AssignRoleUser', [$data -> id])}}" method="POST" enctype="multipart/form-data" novalidate>
-                    @method('PUT')
-                    @csrf
+                <form class="needs-validation" action="<?php echo e(route('AssignRoleUser', [$data -> id])); ?>" method="POST" enctype="multipart/form-data" novalidate>
+                    <?php echo method_field('PUT'); ?>
+                    <?php echo csrf_field(); ?>
                     <div class="checkout-tabs">
                         <div class="row">
                             <div class="col-xl-2 col-sm-3 ">
@@ -202,8 +272,15 @@
                                                             <div class="col-md-2 mb-2">
                                                                 <div class="card-one  mini-stats-wid border border-secondary">
                                                                     <div class="card-body text-center">
-                                                                        <div class="form-check form-checkbox-outline form-check-danger float-end @error('IsOrphanRelief') is-invalid @enderror">
-                                                                            <input class="form-check-input" type="checkbox" value="1" id="IsOrphanRelief" name="IsOrphanRelief" {{ $data->IsOrphanRelief=="1"? 'checked':'' }}>
+                                                                        <div class="form-check form-checkbox-outline form-check-danger float-end <?php $__errorArgs = ['IsOrphanRelief'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>">
+                                                                            <input class="form-check-input" type="checkbox" value="1" id="IsOrphanRelief" name="IsOrphanRelief" <?php echo e($data->IsOrphanRelief=="1"? 'checked':''); ?>>
                                                                         </div>
                                                                         <div class="d-flex">
                                                                             <div class="flex-grow-1">
@@ -217,8 +294,15 @@
                                                             <div class="col-md-2 mb-2">
                                                                 <div class="card-one  mini-stats-wid border border-secondary">
                                                                     <div class="card-body text-center">
-                                                                        <div class="form-check form-checkbox-outline form-check-danger float-end @error('IsAidAndRelief') is-invalid @enderror">
-                                                                            <input class="form-check-input" type="checkbox" value="1" id="IsAidAndRelief" name="IsAidAndRelief" {{ $data->IsAidAndRelief=="1"? 'checked':'' }}>
+                                                                        <div class="form-check form-checkbox-outline form-check-danger float-end <?php $__errorArgs = ['IsAidAndRelief'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>">
+                                                                            <input class="form-check-input" type="checkbox" value="1" id="IsAidAndRelief" name="IsAidAndRelief" <?php echo e($data->IsAidAndRelief=="1"? 'checked':''); ?>>
                                                                         </div>
                                                                         <div class="d-flex">
                                                                             <div class="flex-grow-1">
@@ -232,8 +316,15 @@
                                                             <div class="col-md-2 mb-2">
                                                                 <div class="card-one  mini-stats-wid border border-secondary">
                                                                     <div class="card-body text-center">
-                                                                        <div class="form-check form-checkbox-outline form-check-danger float-end @error('IsWash') is-invalid @enderror">
-                                                                            <input class="form-check-input" type="checkbox" value="1" id="IsWash" name="IsWash" {{ $data->IsWash=="1"? 'checked':'' }}>
+                                                                        <div class="form-check form-checkbox-outline form-check-danger float-end <?php $__errorArgs = ['IsWash'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>">
+                                                                            <input class="form-check-input" type="checkbox" value="1" id="IsWash" name="IsWash" <?php echo e($data->IsWash=="1"? 'checked':''); ?>>
                                                                         </div>
                                                                         <div class="d-flex">
                                                                             <div class="flex-grow-1">
@@ -247,8 +338,15 @@
                                                             <div class="col-md-2 mb-2">
                                                                 <div class="card-one  mini-stats-wid border border-secondary">
                                                                     <div class="card-body text-center">
-                                                                        <div class="form-check form-checkbox-outline form-check-danger float-end @error('IsEducation') is-invalid @enderror">
-                                                                            <input class="form-check-input" type="checkbox" value="1" id="IsEducation" name="IsEducation" {{ $data->IsEducation=="1"? 'checked':'' }}>
+                                                                        <div class="form-check form-checkbox-outline form-check-danger float-end <?php $__errorArgs = ['IsEducation'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>">
+                                                                            <input class="form-check-input" type="checkbox" value="1" id="IsEducation" name="IsEducation" <?php echo e($data->IsEducation=="1"? 'checked':''); ?>>
                                                                         </div>
                                                                         <div class="d-flex">
                                                                             <div class="flex-grow-1">
@@ -262,8 +360,15 @@
                                                             <div class="col-md-2 mb-2">
                                                                 <div class="card-one  mini-stats-wid border border-secondary">
                                                                     <div class="card-body text-center">
-                                                                        <div class="form-check form-checkbox-outline form-check-danger float-end @error('IsInitiative') is-invalid @enderror">
-                                                                            <input class="form-check-input" type="checkbox" value="1" id="IsInitiative" name="IsInitiative" {{ $data->IsInitiative=="1"? 'checked':'' }}>
+                                                                        <div class="form-check form-checkbox-outline form-check-danger float-end <?php $__errorArgs = ['IsInitiative'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>">
+                                                                            <input class="form-check-input" type="checkbox" value="1" id="IsInitiative" name="IsInitiative" <?php echo e($data->IsInitiative=="1"? 'checked':''); ?>>
                                                                         </div>
                                                                         <div class="d-flex">
                                                                             <div class="flex-grow-1">
@@ -277,8 +382,15 @@
                                                             <div class="col-md-2 mb-2">
                                                                 <div class="card-one  mini-stats-wid border border-secondary">
                                                                     <div class="card-body text-center">
-                                                                        <div class="form-check form-checkbox-outline form-check-danger float-end @error('IsMedicalSector') is-invalid @enderror">
-                                                                            <input class="form-check-input" type="checkbox" value="1" id="IsMedicalSector" name="IsMedicalSector" {{ $data->IsMedicalSector=="1"? 'checked':'' }}>
+                                                                        <div class="form-check form-checkbox-outline form-check-danger float-end <?php $__errorArgs = ['IsMedicalSector'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>">
+                                                                            <input class="form-check-input" type="checkbox" value="1" id="IsMedicalSector" name="IsMedicalSector" <?php echo e($data->IsMedicalSector=="1"? 'checked':''); ?>>
                                                                         </div>
                                                                         <div class="d-flex">
                                                                             <div class="flex-grow-1">
@@ -292,8 +404,15 @@
                                                             <div class="col-md-2 mb-2">
                                                                 <div class="card-one  mini-stats-wid border border-secondary">
                                                                     <div class="card-body text-center">
-                                                                        <div class="form-check form-checkbox-outline form-check-danger float-end @error('IsQamarCareCard') is-invalid @enderror">
-                                                                            <input class="form-check-input" type="checkbox" value="1" id="IsQamarCareCard" name="IsQamarCareCard" {{ $data->IsQamarCareCard=="1"? 'checked':'' }}>
+                                                                        <div class="form-check form-checkbox-outline form-check-danger float-end <?php $__errorArgs = ['IsQamarCareCard'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>">
+                                                                            <input class="form-check-input" type="checkbox" value="1" id="IsQamarCareCard" name="IsQamarCareCard" <?php echo e($data->IsQamarCareCard=="1"? 'checked':''); ?>>
                                                                         </div>
                                                                         <div class="d-flex">
                                                                             <div class="flex-grow-1">
@@ -307,8 +426,15 @@
                                                             <div class="col-md-2 mb-2">
                                                                 <div class="card-one  mini-stats-wid border border-secondary">
                                                                     <div class="card-body text-center">
-                                                                        <div class="form-check form-checkbox-outline form-check-danger float-end @error('IsFoodAppeal') is-invalid @enderror">
-                                                                            <input class="form-check-input" type="checkbox" value="1" id="IsFoodAppeal" name="IsFoodAppeal" {{ $data->IsFoodAppeal=="1"? 'checked':'' }}>
+                                                                        <div class="form-check form-checkbox-outline form-check-danger float-end <?php $__errorArgs = ['IsFoodAppeal'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>">
+                                                                            <input class="form-check-input" type="checkbox" value="1" id="IsFoodAppeal" name="IsFoodAppeal" <?php echo e($data->IsFoodAppeal=="1"? 'checked':''); ?>>
                                                                         </div>
                                                                         <div class="d-flex">
                                                                             <div class="flex-grow-1">
@@ -322,8 +448,15 @@
                                                             <div class="col-md-2 mb-2">
                                                                 <div class="card-one  mini-stats-wid border border-secondary">
                                                                     <div class="card-body text-center">
-                                                                        <div class="form-check form-checkbox-outline form-check-danger float-end @error('IsAppealsDistributions') is-invalid @enderror">
-                                                                            <input class="form-check-input" type="checkbox" value="1" id="IsAppealsDistributions" name="IsAppealsDistributions" {{ $data->IsAppealsDistributions=="1"? 'checked':'' }}>
+                                                                        <div class="form-check form-checkbox-outline form-check-danger float-end <?php $__errorArgs = ['IsAppealsDistributions'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>">
+                                                                            <input class="form-check-input" type="checkbox" value="1" id="IsAppealsDistributions" name="IsAppealsDistributions" <?php echo e($data->IsAppealsDistributions=="1"? 'checked':''); ?>>
                                                                         </div>
                                                                         <div class="d-flex">
                                                                             <div class="flex-grow-1">
@@ -337,8 +470,15 @@
                                                             <div class="col-md-2 mb-2">
                                                                 <div class="card-one  mini-stats-wid border border-secondary">
                                                                     <div class="card-body text-center">
-                                                                        <div class="form-check form-checkbox-outline form-check-danger float-end @error('IsDonorsAndDonorBoxes') is-invalid @enderror">
-                                                                            <input class="form-check-input" type="checkbox" value="1" id="IsDonorsAndDonorBoxes" name="IsDonorsAndDonorBoxes" {{ $data->IsDonorsAndDonorBoxes=="1"? 'checked':'' }}>
+                                                                        <div class="form-check form-checkbox-outline form-check-danger float-end <?php $__errorArgs = ['IsDonorsAndDonorBoxes'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>">
+                                                                            <input class="form-check-input" type="checkbox" value="1" id="IsDonorsAndDonorBoxes" name="IsDonorsAndDonorBoxes" <?php echo e($data->IsDonorsAndDonorBoxes=="1"? 'checked':''); ?>>
                                                                         </div>
                                                                         <div class="d-flex">
                                                                             <div class="flex-grow-1">
@@ -352,8 +492,15 @@
                                                             <div class="col-md-2 mb-2">
                                                                 <div class="card-one  mini-stats-wid border border-secondary">
                                                                     <div class="card-body text-center">
-                                                                        <div class="form-check form-checkbox-outline form-check-danger float-end @error('IsVolunteer') is-invalid @enderror">
-                                                                            <input class="form-check-input" type="checkbox" value="1" id="IsVolunteer" name="IsVolunteer" {{ $data->IsVolunteer=="1"? 'checked':'' }}>
+                                                                        <div class="form-check form-checkbox-outline form-check-danger float-end <?php $__errorArgs = ['IsVolunteer'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>">
+                                                                            <input class="form-check-input" type="checkbox" value="1" id="IsVolunteer" name="IsVolunteer" <?php echo e($data->IsVolunteer=="1"? 'checked':''); ?>>
                                                                         </div>
                                                                         <div class="d-flex">
                                                                             <div class="flex-grow-1">
@@ -367,8 +514,15 @@
                                                             <div class="col-md-2 mb-2">
                                                                 <div class="card-one  mini-stats-wid border border-secondary">
                                                                     <div class="card-body text-center">
-                                                                        <div class="form-check form-checkbox-outline form-check-danger float-end @error('IsRepresentative') is-invalid @enderror">
-                                                                            <input class="form-check-input" type="checkbox" value="1" id="IsRepresentative" name="IsRepresentative" {{ $data->IsRepresentative=="1"? 'checked':'' }}>
+                                                                        <div class="form-check form-checkbox-outline form-check-danger float-end <?php $__errorArgs = ['IsRepresentative'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>">
+                                                                            <input class="form-check-input" type="checkbox" value="1" id="IsRepresentative" name="IsRepresentative" <?php echo e($data->IsRepresentative=="1"? 'checked':''); ?>>
                                                                         </div>
                                                                         <div class="d-flex">
                                                                             <div class="flex-grow-1">
@@ -382,8 +536,15 @@
                                                             <div class="col-md-2 mb-2">
                                                                 <div class="card-one  mini-stats-wid border border-secondary">
                                                                     <div class="card-body text-center">
-                                                                        <div class="form-check form-checkbox-outline form-check-danger float-end @error('IsDonorsAndDonorBoxes') is-invalid @enderror">
-                                                                            <input class="form-check-input" type="checkbox" value="1" id="IsDonorsAndDonorBoxes" name="IsDonorsAndDonorBoxes" {{ $data->IsDonorsAndDonorBoxes=="1"? 'checked':'' }}>
+                                                                        <div class="form-check form-checkbox-outline form-check-danger float-end <?php $__errorArgs = ['IsDonorsAndDonorBoxes'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>">
+                                                                            <input class="form-check-input" type="checkbox" value="1" id="IsDonorsAndDonorBoxes" name="IsDonorsAndDonorBoxes" <?php echo e($data->IsDonorsAndDonorBoxes=="1"? 'checked':''); ?>>
                                                                         </div>
                                                                         <div class="d-flex">
                                                                             <div class="flex-grow-1">
@@ -397,8 +558,15 @@
                                                             <div class="col-md-2 mb-2">
                                                                 <div class="card-one  mini-stats-wid border border-secondary">
                                                                     <div class="card-body text-center">
-                                                                        <div class="form-check form-checkbox-outline form-check-danger float-end @error('IsSuperAdmin') is-invalid @enderror">
-                                                                            <input class="form-check-input" type="checkbox" value="1" id="IsSuperAdmin" name="IsSuperAdmin" {{ $data->IsSuperAdmin=="1"? 'checked':'' }}>
+                                                                        <div class="form-check form-checkbox-outline form-check-danger float-end <?php $__errorArgs = ['IsSuperAdmin'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>">
+                                                                            <input class="form-check-input" type="checkbox" value="1" id="IsSuperAdmin" name="IsSuperAdmin" <?php echo e($data->IsSuperAdmin=="1"? 'checked':''); ?>>
                                                                         </div>
                                                                         <div class="d-flex">
                                                                             <div class="flex-grow-1">
@@ -412,8 +580,15 @@
                                                             <div class="col-md-2 mb-2">
                                                                 <div class="card-one  mini-stats-wid border border-secondary">
                                                                     <div class="card-body text-center">
-                                                                        <div class="form-check form-checkbox-outline form-check-danger float-end @error('IsManager') is-invalid @enderror">
-                                                                            <input class="form-check-input" type="checkbox" value="1" id="IsManager" name="IsManager" {{ $data->IsManager=="1"? 'checked':'' }}>
+                                                                        <div class="form-check form-checkbox-outline form-check-danger float-end <?php $__errorArgs = ['IsManager'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>">
+                                                                            <input class="form-check-input" type="checkbox" value="1" id="IsManager" name="IsManager" <?php echo e($data->IsManager=="1"? 'checked':''); ?>>
                                                                         </div>
                                                                         <div class="d-flex">
                                                                             <div class="flex-grow-1">
@@ -427,8 +602,15 @@
                                                             <div class="col-md-2 mb-2">
                                                                 <div class="card-one  mini-stats-wid border border-secondary">
                                                                     <div class="card-body text-center">
-                                                                        <div class="form-check form-checkbox-outline form-check-danger float-end @error('IsGeneralManager') is-invalid @enderror">
-                                                                            <input class="form-check-input" type="checkbox" value="1" id="IsGeneralManager" name="IsGeneralManager" {{ $data->IsGeneralManager=="1"? 'checked':'' }}>
+                                                                        <div class="form-check form-checkbox-outline form-check-danger float-end <?php $__errorArgs = ['IsGeneralManager'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>">
+                                                                            <input class="form-check-input" type="checkbox" value="1" id="IsGeneralManager" name="IsGeneralManager" <?php echo e($data->IsGeneralManager=="1"? 'checked':''); ?>>
                                                                         </div>
                                                                         <div class="d-flex">
                                                                             <div class="flex-grow-1">
@@ -458,9 +640,9 @@
     </div>
 </div>
 <div class="row">
-    @if($data -> IsOrphanRelief == 1)
+    <?php if($data -> IsOrphanRelief == 1): ?>
     <div class="col-md-2 mb-2">
-        <a href="{{route('IndexOrphansRelief')}}">
+        <a href="<?php echo e(route('IndexOrphansRelief')); ?>">
             <div class="card-one  mini-stats-wid border border-secondary">
                 <div class="card-body text-center">
                     <div class="d-flex">
@@ -473,10 +655,10 @@
             </div>
         </a>
     </div>
-    @endif
-    @if($data -> IsAidAndRelief == 1)
+    <?php endif; ?>
+    <?php if($data -> IsAidAndRelief == 1): ?>
     <div class="col-md-2 mb-2">
-        <a href="{{route('IndexOrphansRelief')}}">
+        <a href="<?php echo e(route('IndexOrphansRelief')); ?>">
             <div class="card-one  mini-stats-wid border border-secondary">
                 <div class="card-body text-center">
                     <div class="d-flex">
@@ -489,10 +671,10 @@
             </div>
         </a>
     </div>
-    @endif
-    @if($data -> IsWash == 1)
+    <?php endif; ?>
+    <?php if($data -> IsWash == 1): ?>
     <div class="col-md-2 mb-2">
-        <a href="{{route('IndexOrphansRelief')}}">
+        <a href="<?php echo e(route('IndexOrphansRelief')); ?>">
             <div class="card-one  mini-stats-wid border border-secondary">
                 <div class="card-body text-center">
                     <div class="d-flex">
@@ -505,10 +687,10 @@
             </div>
         </a>
     </div>
-    @endif
-    @if($data -> IsEducation == 1)
+    <?php endif; ?>
+    <?php if($data -> IsEducation == 1): ?>
     <div class="col-md-2 mb-2">
-        <a href="{{route('IndexEducation')}}">
+        <a href="<?php echo e(route('IndexEducation')); ?>">
             <div class="card-one  mini-stats-wid border border-secondary">
                 <div class="card-body text-center">
                     <div class="d-flex">
@@ -521,10 +703,10 @@
             </div>
         </a>
     </div>
-    @endif
-    @if($data -> IsInitiative == 1)
+    <?php endif; ?>
+    <?php if($data -> IsInitiative == 1): ?>
     <div class="col-md-2 mb-2">
-        <a href="{{route('IndexEducation')}}">
+        <a href="<?php echo e(route('IndexEducation')); ?>">
             <div class="card-one  mini-stats-wid border border-secondary">
                 <div class="card-body text-center">
                     <div class="d-flex">
@@ -537,10 +719,10 @@
             </div>
         </a>
     </div>
-    @endif
-    @if($data -> IsMedicalSector == 1)
+    <?php endif; ?>
+    <?php if($data -> IsMedicalSector == 1): ?>
     <div class="col-md-2 mb-2">
-        <a href="{{route('IndexEducation')}}">
+        <a href="<?php echo e(route('IndexEducation')); ?>">
             <div class="card-one  mini-stats-wid border border-secondary">
                 <div class="card-body text-center">
                     <div class="d-flex">
@@ -553,10 +735,10 @@
             </div>
         </a>
     </div>
-    @endif
-    @if($data -> IsQamarCareCard == 1)
+    <?php endif; ?>
+    <?php if($data -> IsQamarCareCard == 1): ?>
     <div class="col-md-2 mb-2">
-        <a href="{{route('IndexCareCard')}}">
+        <a href="<?php echo e(route('IndexCareCard')); ?>">
             <div class="card-one  mini-stats-wid border border-secondary">
                 <div class="card-body text-center">
                     <div class="d-flex">
@@ -569,10 +751,10 @@
             </div>
         </a>
     </div>
-    @endif
-    @if($data -> IsFoodAppeal == 1)
+    <?php endif; ?>
+    <?php if($data -> IsFoodAppeal == 1): ?>
     <div class="col-md-2 mb-2">
-        <a href="{{route('IndexEducation')}}">
+        <a href="<?php echo e(route('IndexEducation')); ?>">
             <div class="card-one  mini-stats-wid border border-secondary">
                 <div class="card-body text-center">
                     <div class="d-flex">
@@ -585,10 +767,10 @@
             </div>
         </a>
     </div>
-    @endif
-    @if($data -> IsAppealsDistributions == 1)
+    <?php endif; ?>
+    <?php if($data -> IsAppealsDistributions == 1): ?>
     <div class="col-md-2 mb-2">
-        <a href="{{route('IndexCareCard')}}">
+        <a href="<?php echo e(route('IndexCareCard')); ?>">
             <div class="card-one  mini-stats-wid border border-secondary">
                 <div class="card-body text-center">
                     <div class="d-flex">
@@ -601,10 +783,10 @@
             </div>
         </a>
     </div>
-    @endif
-    @if($data -> IsDonorsAndDonorBoxes == 1)
+    <?php endif; ?>
+    <?php if($data -> IsDonorsAndDonorBoxes == 1): ?>
     <div class="col-md-2 mb-2">
-        <a href="{{route('IndexCareCard')}}">
+        <a href="<?php echo e(route('IndexCareCard')); ?>">
             <div class="card-one  mini-stats-wid border border-secondary">
                 <div class="card-body text-center">
                     <div class="d-flex">
@@ -617,10 +799,10 @@
             </div>
         </a>
     </div>
-    @endif
-    @if($data -> IsVolunteer == 1)
+    <?php endif; ?>
+    <?php if($data -> IsVolunteer == 1): ?>
     <div class="col-md-2 mb-2">
-        <a href="{{route('AllVolunteer')}}">
+        <a href="<?php echo e(route('AllVolunteer')); ?>">
             <div class="card-one  mini-stats-wid border border-secondary">
                 <div class="card-body text-center">
                     <div class="d-flex">
@@ -633,10 +815,10 @@
             </div>
         </a>
     </div>
-    @endif
-    @if($data ->  IsRepresentative  == 1)
+    <?php endif; ?>
+    <?php if($data ->  IsRepresentative  == 1): ?>
     <div class="col-md-2 mb-2">
-        <a href="{{route('AllRepresentative')}}">
+        <a href="<?php echo e(route('AllRepresentative')); ?>">
             <div class="card-one  mini-stats-wid border border-secondary">
                 <div class="card-body text-center">
                     <div class="d-flex">
@@ -649,10 +831,10 @@
             </div>
         </a>
     </div>
-    @endif
-    @if($data -> IsSuperAdmin == 1)
+    <?php endif; ?>
+    <?php if($data -> IsSuperAdmin == 1): ?>
     <div class="col-md-2 mb-2">
-        <a href="{{route('IndexSystemManagement')}}">
+        <a href="<?php echo e(route('IndexSystemManagement')); ?>">
             <div class="card-one  mini-stats-wid border border-secondary">
                 <div class="card-body text-center">
                     <div class="d-flex">
@@ -665,8 +847,8 @@
             </div>
         </a>
     </div>
-    @endif
-    @if($data -> IsManager == 1)
+    <?php endif; ?>
+    <?php if($data -> IsManager == 1): ?>
     <div class="col-md-2 mb-2">
         <a href="#">
             <div class="card-one  mini-stats-wid border border-secondary">
@@ -681,8 +863,8 @@
             </div>
         </a>
     </div>
-    @endif
-    @if($data -> IsGeneralManager == 1)
+    <?php endif; ?>
+    <?php if($data -> IsGeneralManager == 1): ?>
     <div class="col-md-2 mb-2">
         <a href="#">
             <div class="card-one  mini-stats-wid border border-secondary">
@@ -697,7 +879,7 @@
             </div>
         </a>
     </div>
-    @endif
+    <?php endif; ?>
 </div>
 <div class="row mt-4">
     <div class="col-md-10">
@@ -711,9 +893,9 @@
     <div class="col-md-12">
         <div class="collapse hide" id="resetPassord">
             <div class="card shadow-none card-body text-muted mb-0 mb-4" style="border: 2px dashed #50a5f1;">
-                <form class="needs-validation" action="{{route('ResetPasswordUser', [$data -> id])}}" method="POST" enctype="multipart/form-data" novalidate>
-                    @method('PUT')
-                    @csrf
+                <form class="needs-validation" action="<?php echo e(route('ResetPasswordUser', [$data -> id])); ?>" method="POST" enctype="multipart/form-data" novalidate>
+                    <?php echo method_field('PUT'); ?>
+                    <?php echo csrf_field(); ?>
                     <div class="checkout-tabs">
                         <div class="row">
                             <div class="col-xl-2 col-sm-3 ">
@@ -737,13 +919,27 @@
                                                                 <div class="mb-3 position-relative">
                                                                     <label for="password" class="form-label ">New Password <i class="mdi mdi-asterisk text-danger"></i></label>
                                                                     <div class="hstack gap-3">
-                                                                        <input class="form-control form-control-lg me-auto @error('password') is-invalid @enderror" value="{{ old('password') }}" type="text" name="password" id="QCC" required>
+                                                                        <input class="form-control form-control-lg me-auto <?php $__errorArgs = ['password'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" value="<?php echo e(old('password')); ?>" type="text" name="password" id="QCC" required>
                                                                         <button type="button" class="btn btn-lg btn-outline-danger password" onclick="Random()"><i class=" bx bxs-magic-wand  font-size-16 align-middle"></i> </button>
-                                                                        @error('password')
+                                                                        <?php $__errorArgs = ['password'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
                                                                         <span class="invalid-feedback" role="alert">
-                                                                            <strong>{{ $message }}</strong>
+                                                                            <strong><?php echo e($message); ?></strong>
                                                                         </span>
-                                                                        @enderror
+                                                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -766,7 +962,7 @@
     </div>
 </div>
 <div class="row mt-4">
-    @if($data -> IsActive == 1)
+    <?php if($data -> IsActive == 1): ?>
     <div class="col-md-2 mb-2">
         <div class="card-one  mini-stats-wid border border-secondary">
             <div class="card-body text-center">
@@ -779,8 +975,8 @@
             </div>
         </div>
     </div>
-    @endif
-    @if($data -> IsActive != 1)
+    <?php endif; ?>
+    <?php if($data -> IsActive != 1): ?>
     <div class="col-md-2 mb-2">
         <div class="card-one  mini-stats-wid border border-secondary">
             <div class="card-body text-center">
@@ -793,8 +989,8 @@
             </div>
         </div>
     </div>
-    @endif
-    @if($data -> IsEmployee == 1)
+    <?php endif; ?>
+    <?php if($data -> IsEmployee == 1): ?>
     <div class="col-md-2 mb-2">
         <div class="card-one  mini-stats-wid border border-secondary">
             <div class="card-body text-center">
@@ -807,8 +1003,8 @@
             </div>
         </div>
     </div>
-    @endif
-    @if($data -> IsOrphanSponsor == 1)
+    <?php endif; ?>
+    <?php if($data -> IsOrphanSponsor == 1): ?>
     <div class="col-md-2 mb-2">
         <div class="card-one  mini-stats-wid border border-secondary">
             <div class="card-body text-center">
@@ -821,28 +1017,28 @@
             </div>
         </div>
     </div>
-    @endif
+    <?php endif; ?>
 </div>
 <div class="row">
     <div class="col-12">
-        @if($data -> IsActive == 1)
-        <a href="{{route('DeActivateUser', ['data' => $data -> id])}}" class="btn btn-outline-danger btn-lg btn-rounded w-lg waves-effect waves-light reinitiate m-3">
+        <?php if($data -> IsActive == 1): ?>
+        <a href="<?php echo e(route('DeActivateUser', ['data' => $data -> id])); ?>" class="btn btn-outline-danger btn-lg btn-rounded w-lg waves-effect waves-light reinitiate m-3">
             De-ACTIVATE
         </a>
-        @endif
-        @if($data -> IsActive == 0)
-        <a href="{{route('ActivateUser', ['data' => $data -> id])}}" class="btn btn-outline-success btn-lg btn-rounded w-lg waves-effect waves-light approve m-3">
+        <?php endif; ?>
+        <?php if($data -> IsActive == 0): ?>
+        <a href="<?php echo e(route('ActivateUser', ['data' => $data -> id])); ?>" class="btn btn-outline-success btn-lg btn-rounded w-lg waves-effect waves-light approve m-3">
             ACTIVATE
         </a>
-        <a href="{{route('DeleteUser', ['data' => $data -> id])}}" class="btn btn-outline-danger btn-lg waves-effect waves-light delete-confirm">
+        <a href="<?php echo e(route('DeleteUser', ['data' => $data -> id])); ?>" class="btn btn-outline-danger btn-lg waves-effect waves-light delete-confirm">
             <i class=" bx bx-trash-alt font-size-16 align-middle"></i>
         </a>
-        @endif
+        <?php endif; ?>
     </div>
 </div>
-@endsection
-@section('script')
-<script src="{{ URL::asset('/assets/js/pages/sweetalert.min.js') }}"></script>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('script'); ?>
+<script src="<?php echo e(URL::asset('/assets/js/pages/sweetalert.min.js')); ?>"></script>
 
 <script>
     $('.reinitiate').on('click', function(event) {
@@ -911,4 +1107,6 @@
     };
 </script>
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make(Cookie::get('Layout') == 'LayoutSidebar' ? 'Layouts.master' : 'Layouts.master-layouts', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\TheStranger\Desktop\Projects\LampakaByte\lampaka\resources\views/SystemManagement/User/Status.blade.php ENDPATH**/ ?>

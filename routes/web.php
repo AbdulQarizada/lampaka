@@ -45,7 +45,7 @@ Route::get('/GetDistricts/{data}', [App\Http\Controllers\HomeController::class, 
 //create lookups
 
 // set cookies for layout
-Route::get('/Layout/LayoutSidebar', [App\Http\Controllers\HomeController::class, 'LayoutSidebar'])->name('LayoutSidebar');
+Route::get('/Layout/Layoutsidebar', [App\Http\Controllers\HomeController::class, 'Layoutsidebar'])->name('Layoutsidebar');
 Route::get('/Layout/LayoutNoSidebar', [App\Http\Controllers\HomeController::class, 'LayoutNoSidebar'])->name('LayoutNoSidebar');
 
 Route::get('/Projects', [App\Http\Controllers\HomeController::class, 'Projects'])->name('Projects');

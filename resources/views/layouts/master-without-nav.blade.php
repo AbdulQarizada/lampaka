@@ -22,6 +22,6 @@
 </head>
 @yield('body')
 @yield('content')
-@include('Layouts.vendor-scripts')
+@include('layouts.vendor-scripts')
 </body>
 </html>
