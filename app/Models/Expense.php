@@ -15,6 +15,7 @@ class Expense extends Model
         'Item',
         'Currency',
         'Bill',
+        'Description',
         'Amount',
         'Date',
         'created_at',

@@ -64,6 +64,17 @@
                                                             </div>
                                                             <div class="col-md-4">
                                                                 <div class="mb-3 position-relative">
+                                                                    <label for="Description" class="form-label ">Description </label>
+                                                                    <input type="text" class="form-control form-control-lg @error('Description') is-invalid @enderror" value="{{ old('Description') }}" id="Description" name="Description" >
+                                                                    @error('Description')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                    @enderror
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="mb-3 position-relative">
                                                                     <label for="Amount" class="form-label ">Amount <i class="mdi mdi-asterisk text-danger"></i></label>
                                                                     <input type="number" class="form-control form-control-lg @error('Amount') is-invalid @enderror" value="{{ old('Amount') }}" id="Amount" name="Amount" required>
                                                                     @error('Amount')

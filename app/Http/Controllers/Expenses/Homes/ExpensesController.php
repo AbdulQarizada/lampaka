@@ -116,6 +116,7 @@ class ExpensesController extends Controller
           'Item' => request('Item'),
           'Currency' => request('Currency'),
           'Amount' => request('Amount'),
+          'Description' => request('Description'),
           'Date' => Carbon\Carbon::now(),
           'Bill' => request('Bill'),
           'Created_By' => auth()->user()->id,

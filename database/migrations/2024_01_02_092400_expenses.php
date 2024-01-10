@@ -19,6 +19,7 @@ return new class extends Migration
             $table -> string('Item')->nullable();
             $table -> string('Currency')->nullable();
             $table -> text('Bill')->nullable();
+            $table -> text('Description')->nullable();
             $table -> integer('Amount')->nullable();
             $table -> date('Date')->nullable();
             $table -> string('Created_By')->nullable();
