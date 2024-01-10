@@ -38,19 +38,19 @@
                                                         <div class="row">
                                                             <div class="col-md-4">
                                                                 <div class="mb-3 position-relative">
-                                                                    <label for="Item" class="form-label">Item <i class="mdi mdi-asterisk text-danger"></i></label>
+                                                                    <label for="Item_ID" class="form-label">Item <i class="mdi mdi-asterisk text-danger"></i></label>
                                                                     <div class="input-group input-group-merge">
-                                                                        <select class="form-select  form-select-lg <?php $__errorArgs = ['Item'];
+                                                                        <select class="form-select  form-select-lg <?php $__errorArgs = ['Item_ID'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" value="<?php echo e(old('Item')); ?>" id="Item_ID" name="Item" required>
+unset($__errorArgs, $__bag); ?>" value="<?php echo e(old('Item_ID')); ?>" id="Item_ID" name="Item_ID" required>
                                                                             <option value="">Select Your Item</option>
                                                                             <?php $__currentLoopData = $items; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                                            <option value="<?php echo e($item -> Name); ?>"><?php echo e($item -> Name); ?></option>
+                                                                            <option value="<?php echo e($item -> id); ?>"><?php echo e($item -> Name); ?></option>
                                                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                                         </select>
                                                                         <a href="#" data-bs-toggle="collapse" data-bs-target="#addLookUp" aria-expanded="false" aria-controls="addLookUp">
@@ -61,7 +61,7 @@ unset($__errorArgs, $__bag); ?>" value="<?php echo e(old('Item')); ?>" id="Item_
                                                                         </div>
                                                                         </a>
                                                                     </div>
-                                                                    <?php $__errorArgs = ['Item'];
+                                                                    <?php $__errorArgs = ['Item_ID'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -154,21 +154,21 @@ unset($__errorArgs, $__bag); ?>
                                                             </div> 
                                                             <div class="col-md-4">
                                                                 <div class="mb-3 position-relative">
-                                                                    <label for="Currency" class="form-label">Currency <i class="mdi mdi-asterisk text-danger"></i></label>
-                                                                    <select class="form-select  form-select-lg <?php $__errorArgs = ['Currency'];
+                                                                    <label for="Currency_ID" class="form-label">Currency <i class="mdi mdi-asterisk text-danger"></i></label>
+                                                                    <select class="form-select  form-select-lg <?php $__errorArgs = ['Currency_ID'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" value="<?php echo e(old('Currency')); ?>" id="Currency" name="Currency" required>
+unset($__errorArgs, $__bag); ?>" value="<?php echo e(old('Currency_ID')); ?>" id="Currency_ID" name="Currency_ID" required>
                                                                         <option value="">Select Your Currency</option>
                                                                         <?php $__currentLoopData = $currencies; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $currency): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                                        <option value="<?php echo e($currency -> Name); ?>"><?php echo e($currency -> Name); ?></option>
+                                                                        <option value="<?php echo e($currency -> id); ?>"><?php echo e($currency -> Name); ?></option>
                                                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                                     </select>
-                                                                    <?php $__errorArgs = ['Currency'];
+                                                                    <?php $__errorArgs = ['Currency_ID'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -184,21 +184,21 @@ unset($__errorArgs, $__bag); ?>
                                                             </div>
                                                             <div class="col-md-4">
                                                                 <div class="mb-3 position-relative">
-                                                                    <label for="Type" class="form-label">Home <i class="mdi mdi-asterisk text-danger"></i></label>
-                                                                    <select class="form-select  form-select-lg <?php $__errorArgs = ['Type'];
+                                                                    <label for="Type_ID" class="form-label">Home <i class="mdi mdi-asterisk text-danger"></i></label>
+                                                                    <select class="form-select  form-select-lg <?php $__errorArgs = ['Type_ID'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" value="<?php echo e(old('Type')); ?>" id="Type" name="Type" required>
+unset($__errorArgs, $__bag); ?>" value="<?php echo e(old('Type_ID')); ?>" id="Type_ID" name="Type_ID" required>
                                                                         <option value="">Select Your Home</option>
                                                                         <?php $__currentLoopData = $homes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $home): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                                        <option value="<?php echo e($home -> Name); ?>"><?php echo e($home -> Name); ?></option>
+                                                                        <option value="<?php echo e($home -> id); ?>"><?php echo e($home -> Name); ?></option>
                                                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                                     </select>
-                                                                    <?php $__errorArgs = ['Type'];
+                                                                    <?php $__errorArgs = ['Type_ID'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -359,7 +359,7 @@ unset($__errorArgs, $__bag); ?>
     <?php if(Auth::user()->IsExpensive == 1): ?>
     <div class="row">
         <div class="col-md-2 mt-2">
-            <h1 class="font-size-24 fw-medium text-dark text-muted"><?php echo e($PageInfo); ?> Home Expenses</h1>
+            <h1 class="font-size-24 fw-medium text-dark text-muted"><?php echo e($PageInfo); ?> Home Expenses </h1>
         </div>
         <div class="col-md-2 mt-3 col-xs-4">
             <div class="mb-3 position-relative ">
@@ -373,7 +373,7 @@ endif;
 unset($__errorArgs, $__bag); ?>" onchange="window.location.href = this.value;">
                     <option>Select Home</option>
                     <?php $__currentLoopData = $homes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $home): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <option value="<?php echo e(route($home -> Name)); ?>" <?php echo e($PageInfo == '$home -> Name' ? 'selected' : ''); ?>><?php echo e($home -> Name); ?></option>
+                    <option value="<?php echo e(route('SearchExpense', ['data' => $home -> Name])); ?>" <?php echo e($PageInfo == '$home -> Name' ? 'selected' : ''); ?>><?php echo e($home -> Name); ?></option>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </select>
                 <?php $__errorArgs = ['Type'];

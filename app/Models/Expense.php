@@ -11,9 +11,9 @@ class Expense extends Model
     protected $table = 'expenses';
     protected $fillable =
     [
-        'Type',
-        'Item',
-        'Currency',
+        'Type_ID',
+        'Item_ID',
+        'Currency_ID',
         'Bill',
         'Description',
         'Amount',

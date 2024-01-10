@@ -39,12 +39,12 @@
                                                         <div class="row">
                                                             <div class="col-md-4">
                                                                 <div class="mb-3 position-relative">
-                                                                    <label for="Item" class="form-label">Item <i class="mdi mdi-asterisk text-danger"></i></label>
+                                                                    <label for="Item_ID" class="form-label">Item <i class="mdi mdi-asterisk text-danger"></i></label>
                                                                     <div class="input-group input-group-merge">
-                                                                        <select class="form-select  form-select-lg @error('Item') is-invalid @enderror" value="{{ old('Item') }}" id="Item_ID" name="Item" required>
+                                                                        <select class="form-select  form-select-lg @error('Item_ID') is-invalid @enderror" value="{{ old('Item_ID') }}" id="Item_ID" name="Item_ID" required>
                                                                             <option value="">Select Your Item</option>
                                                                             @foreach($items as $item)
-                                                                            <option value="{{ $item -> Name}}">{{ $item -> Name}}</option>
+                                                                            <option value="{{ $item -> id}}">{{ $item -> Name}}</option>
                                                                             @endforeach
                                                                         </select>
                                                                         <a href="#" data-bs-toggle="collapse" data-bs-target="#addLookUp" aria-expanded="false" aria-controls="addLookUp">
@@ -55,7 +55,7 @@
                                                                         </div>
                                                                         </a>
                                                                     </div>
-                                                                    @error('Item')
+                                                                    @error('Item_ID')
                                                                     <span class="invalid-feedback" role="alert">
                                                                         <strong>{{ $message }}</strong>
                                                                     </span>
@@ -99,14 +99,14 @@
                                                             </div> 
                                                             <div class="col-md-4">
                                                                 <div class="mb-3 position-relative">
-                                                                    <label for="Currency" class="form-label">Currency <i class="mdi mdi-asterisk text-danger"></i></label>
-                                                                    <select class="form-select  form-select-lg @error('Currency') is-invalid @enderror" value="{{ old('Currency') }}" id="Currency" name="Currency" required>
+                                                                    <label for="Currency_ID" class="form-label">Currency <i class="mdi mdi-asterisk text-danger"></i></label>
+                                                                    <select class="form-select  form-select-lg @error('Currency_ID') is-invalid @enderror" value="{{ old('Currency_ID') }}" id="Currency_ID" name="Currency_ID" required>
                                                                         <option value="">Select Your Currency</option>
                                                                         @foreach($currencies as $currency)
-                                                                        <option value="{{ $currency -> Name}}">{{ $currency -> Name}}</option>
+                                                                        <option value="{{ $currency -> id}}">{{ $currency -> Name}}</option>
                                                                         @endforeach
                                                                     </select>
-                                                                    @error('Currency')
+                                                                    @error('Currency_ID')
                                                                     <span class="invalid-feedback" role="alert">
                                                                         <strong>{{ $message }}</strong>
                                                                     </span>
@@ -115,14 +115,14 @@
                                                             </div>
                                                             <div class="col-md-4">
                                                                 <div class="mb-3 position-relative">
-                                                                    <label for="Type" class="form-label">Home <i class="mdi mdi-asterisk text-danger"></i></label>
-                                                                    <select class="form-select  form-select-lg @error('Type') is-invalid @enderror" value="{{ old('Type') }}" id="Type" name="Type" required>
+                                                                    <label for="Type_ID" class="form-label">Home <i class="mdi mdi-asterisk text-danger"></i></label>
+                                                                    <select class="form-select  form-select-lg @error('Type_ID') is-invalid @enderror" value="{{ old('Type_ID') }}" id="Type_ID" name="Type_ID" required>
                                                                         <option value="">Select Your Home</option>
                                                                         @foreach($homes as $home)
-                                                                        <option value="{{ $home -> Name}}">{{ $home -> Name}}</option>
+                                                                        <option value="{{ $home -> id}}">{{ $home -> Name}}</option>
                                                                         @endforeach
                                                                     </select>
-                                                                    @error('Type')
+                                                                    @error('Type_ID')
                                                                     <span class="invalid-feedback" role="alert">
                                                                         <strong>{{ $message }}</strong>
                                                                     </span>
@@ -234,14 +234,14 @@
     @if(Auth::user()->IsExpensive == 1)
     <div class="row">
         <div class="col-md-2 mt-2">
-            <h1 class="font-size-24 fw-medium text-dark text-muted">{{ $PageInfo }} Home Expenses</h1>
+            <h1 class="font-size-24 fw-medium text-dark text-muted">{{ $PageInfo }} Home Expenses </h1>
         </div>
         <div class="col-md-2 mt-3 col-xs-4">
             <div class="mb-3 position-relative ">
                 <select class="form-select  form-select-lg @error('Type') is-invalid @enderror" onchange="window.location.href = this.value;">
                     <option>Select Home</option>
                     @foreach($homes as $home)
-                    <option value="{{ route($home -> Name) }}" {{ $PageInfo == '$home -> Name' ? 'selected' : '' }}>{{ $home -> Name}}</option>
+                    <option value="{{route('SearchExpense', ['data' => $home -> Name])}}" {{ $PageInfo == '$home -> Name' ? 'selected' : '' }}>{{ $home -> Name}}</option>
                     @endforeach
                 </select>
                 @error('Type')

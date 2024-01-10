@@ -22,99 +22,53 @@ class ExpensesController extends Controller
       $Homes =   LookUp::where("Parent_Name", "=", "Home")->get();
       $Items =   LookUp::where("Parent_Name", "=", "Item")->get();
       $Currencies =   LookUp::where("Parent_Name", "=", "Currency")->get();
-      $PageInfo = 'Kabul';
+      
 
+      $Type_ID =   LookUp::where("Name", "=", "Kabul")->first();
+      $PageInfo = $Type_ID -> Name;
 
-      $AllHomeExpenses = Expense::Where("Type", "=","Kabul")->sum('Amount');
-      $ThisYearHomeExpenses = Expense::Where("Type", "=","Kabul")->whereYear("Date", "=", now() -> format('Y'))->sum('Amount');
-      $ThisMonthHomeExpenses = Expense::Where("Type", "=","Kabul")->whereYear("Date", "=", now() -> format('Y'))->whereMonth("Date", "=", now() -> format('m'))->sum('Amount');
+      $AllHomeExpenses = Expense::Where("Type_ID", "=",$Type_ID -> id)->sum('Amount');
+      $ThisYearHomeExpenses = Expense::Where("Type_ID", "=",$Type_ID-> id)->whereYear("Date", "=", now() -> format('Y'))->sum('Amount');
+      $ThisMonthHomeExpenses = Expense::Where("Type_ID", "=",$Type_ID-> id)->whereYear("Date", "=", now() -> format('Y'))->whereMonth("Date", "=", now() -> format('m'))->sum('Amount');
       return view('Expenses.Index', ['PageInfo'=> $PageInfo,  'AllHomeExpenses' => $AllHomeExpenses, 'ThisYearHomeExpenses' => $ThisYearHomeExpenses, 'ThisMonthHomeExpenses' => $ThisMonthHomeExpenses,'currencies' => $Currencies, 'items' => $Items,'homes' => $Homes,'mainLookUps' => $mainLookUps]);
         
     }
 
    
-    public function Kabul()
+    public function Search(string $data)
     {
       $mainLookUps = LookUp::where('look_ups.Parent_Name', '=', 'None') -> get();
       $Homes =   LookUp::where("Parent_Name", "=", "Home")->get();
       $Items =   LookUp::where("Parent_Name", "=", "Item")->get();
       $Currencies =   LookUp::where("Parent_Name", "=", "Currency")->get();
-      $PageInfo = 'Kabul';
 
+      $Type_Name =   LookUp::where("Name", "=", $data)->first();
+      $PageInfo = $Type_Name -> Name;
 
-      $AllHomeExpenses = Expense::Where("Type", "=","Kabul")->sum('Amount');
-      $ThisYearHomeExpenses = Expense::Where("Type", "=","Kabul")->whereYear("Date", "=", now() -> format('Y'))->sum('Amount');
-      $ThisMonthHomeExpenses = Expense::Where("Type", "=","Kabul")->whereYear("Date", "=", now() -> format('Y'))->whereMonth("Date", "=", now() -> format('m'))->sum('Amount');
+      $AllHomeExpenses = Expense::Where("Type_ID", "=",$Type_Name -> id)->sum('Amount');
+      $ThisYearHomeExpenses = Expense::Where("Type_ID", "=",$Type_Name -> id)->whereYear("Date", "=", now() -> format('Y'))->sum('Amount');
+      $ThisMonthHomeExpenses = Expense::Where("Type_ID", "=",$Type_Name -> id)->whereYear("Date", "=", now() -> format('Y'))->whereMonth("Date", "=", now() -> format('m'))->sum('Amount');
       return view('Expenses.Index', ['PageInfo'=> $PageInfo,  'AllHomeExpenses' => $AllHomeExpenses, 'ThisYearHomeExpenses' => $ThisYearHomeExpenses, 'ThisMonthHomeExpenses' => $ThisMonthHomeExpenses,'currencies' => $Currencies, 'items' => $Items,'homes' => $Homes,'mainLookUps' => $mainLookUps]);
         
     }
 
 
-    public function Laghman()
-    {
-      $mainLookUps = LookUp::where('look_ups.Parent_Name', '=', 'None') -> get();
-      $Homes =   LookUp::where("Parent_Name", "=", "Home")->get();
-      $Items =   LookUp::where("Parent_Name", "=", "Item")->get();
-      $Currencies =   LookUp::where("Parent_Name", "=", "Currency")->get();
-      $PageInfo = 'Laghman';
 
-
-      $AllHomeExpenses = Expense::Where("Type", "=","Laghman")->sum('Amount');
-      $ThisYearHomeExpenses = Expense::Where("Type", "=","Laghman")->whereYear("Date", "=", now() -> format('Y'))->sum('Amount');
-      $ThisMonthHomeExpenses = Expense::Where("Type", "=","Laghman")->whereYear("Date", "=", now() -> format('Y'))->whereMonth("Date", "=", now() -> format('m'))->sum('Amount');
-      return view('Expenses.Index', ['PageInfo'=> $PageInfo,  'AllHomeExpenses' => $AllHomeExpenses, 'ThisYearHomeExpenses' => $ThisYearHomeExpenses, 'ThisMonthHomeExpenses' => $ThisMonthHomeExpenses,'currencies' => $Currencies, 'items' => $Items,'homes' => $Homes,'mainLookUps' => $mainLookUps]);
-        
-    }
-
-
-    public function Canada()
-    {
-      $mainLookUps = LookUp::where('look_ups.Parent_Name', '=', 'None') -> get();
-      $Homes =   LookUp::where("Parent_Name", "=", "Home")->get();
-      $Items =   LookUp::where("Parent_Name", "=", "Item")->get();
-      $Currencies =   LookUp::where("Parent_Name", "=", "Currency")->get();
-      $PageInfo = 'Canada';
-      
-
-
-      $AllHomeExpenses = Expense::Where("Type", "=","Canada")->sum('Amount');
-      $ThisYearHomeExpenses = Expense::Where("Type", "=","Canada")->whereYear("Date", "=", now() -> format('Y'))->sum('Amount');
-      $ThisMonthHomeExpenses = Expense::Where("Type", "=","Canada")->whereYear("Date", "=", now() -> format('Y'))->whereMonth("Date", "=", now() -> format('m'))->sum('Amount');
-      return view('Expenses.Index', ['PageInfo'=> $PageInfo,  'AllHomeExpenses' => $AllHomeExpenses, 'ThisYearHomeExpenses' => $ThisYearHomeExpenses, 'ThisMonthHomeExpenses' => $ThisMonthHomeExpenses,'currencies' => $Currencies, 'items' => $Items,'homes' => $Homes,'mainLookUps' => $mainLookUps]);
-        
-    }
-
-
-    public function Turkey()
-    {
-      $mainLookUps = LookUp::where('look_ups.Parent_Name', '=', 'None') -> get();
-      $Homes =   LookUp::where("Parent_Name", "=", "Home")->get();
-      $Items =   LookUp::where("Parent_Name", "=", "Item")->get();
-      $Currencies =   LookUp::where("Parent_Name", "=", "Currency")->get();
-      $PageInfo = 'Turkey';
-
-
-      $AllHomeExpenses = Expense::Where("Type", "=","Turkey")->sum('Amount');
-      $ThisYearHomeExpenses = Expense::Where("Type", "=","Turkey")->whereYear("Date", "=", now() -> format('Y'))->sum('Amount');
-      $ThisMonthHomeExpenses = Expense::Where("Type", "=","Turkey")->whereYear("Date", "=", now() -> format('Y'))->whereMonth("Date", "=", now() -> format('m'))->sum('Amount');
-      return view('Expenses.Index', ['PageInfo'=> $PageInfo,  'AllHomeExpenses' => $AllHomeExpenses, 'ThisYearHomeExpenses' => $ThisYearHomeExpenses, 'ThisMonthHomeExpenses' => $ThisMonthHomeExpenses,'currencies' => $Currencies, 'items' => $Items,'homes' => $Homes,'mainLookUps' => $mainLookUps]);
-        
-    }
 
 
 
     public function Store(Request $request) 
     {
         $validator = $request->validate([
-          'Type' => 'bail|required|max:255',
-          'Item' => 'required|max:255',
-          'Currency' => 'required|max:255',
+          'Type_ID' => 'bail|required|max:20',
+          'Item_ID' => 'required|max:20',
+          'Currency_ID' => 'required|max:20',
           'Amount' => 'required|max:255',
         ]);
         Expense::create([
-          'Type' => request('Type'),
-          'Item' => request('Item'),
-          'Currency' => request('Currency'),
+          'Type_ID' => request('Type_ID'),
+          'Item_ID' => request('Item_ID'),
+          'Currency_ID' => request('Currency_ID'),
           'Amount' => request('Amount'),
           'Description' => request('Description'),
           'Date' => request('Date'),
@@ -137,14 +91,17 @@ public function Delete(Expense $data)
     public function Details(string $data)
     {
 
-      $PageInfo = 'Kabul';
-      $datas = Expense::Where("Type", "=",$data)
+      $Type_Name =   LookUp::where("Name", "=", $data)->first();
+      $PageInfo = $Type_Name -> Name;
+      $datas = Expense::Where("Type_ID", "=",$Type_Name -> id)
       -> join('users as a', 'expenses.Created_By', '=', 'a.id')
-      ->select('expenses.*', 'a.FirstName as UFirstName', 'a.LastName as ULastName')
-      ->paginate(100);
-      $AllHomeExpenses = Expense::Where("Type", "=",$data)->sum('Amount');
-      $ThisYearHomeExpenses = Expense::Where("Type", "=",$data)->whereYear("Date", "=", now() -> format('Y'))->sum('Amount');
-      $ThisMonthHomeExpenses = Expense::Where("Type", "=",$data)->whereYear("Date", "=", now() -> format('Y'))->whereMonth("Date", "=", now() -> format('m'))->sum('Amount');
+      -> join('look_ups as b', 'expenses.Item_ID', '=', 'b.id')
+      -> join('look_ups as c', 'expenses.Currency_ID', '=', 'c.id')
+      -> select('expenses.*', 'a.FirstName as UFirstName', 'a.LastName as ULastName', 'b.Name as Item', 'c.Name as Currency')
+      -> paginate(100);
+      $AllHomeExpenses = Expense::Where("Type_ID", "=",$Type_Name -> id)->sum('Amount');
+      $ThisYearHomeExpenses = Expense::Where("Type_ID", "=",$Type_Name -> id)->whereYear("Date", "=", now() -> format('Y'))->sum('Amount');
+      $ThisMonthHomeExpenses = Expense::Where("Type_ID", "=",$Type_Name -> id)->whereYear("Date", "=", now() -> format('Y'))->whereMonth("Date", "=", now() -> format('m'))->sum('Amount');
       return view('Expenses.Details', ['PageInfo'=> $PageInfo, 'datas'=> $datas, 'AllHomeExpenses' => $AllHomeExpenses, 'ThisYearHomeExpenses' => $ThisYearHomeExpenses, 'ThisMonthHomeExpenses' => $ThisMonthHomeExpenses]);
      
       
