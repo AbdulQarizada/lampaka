@@ -1,0 +1,45 @@
+
+.pricingTable .tabsBtnHolder ul{
+    float:left;
+    display:block;
+    width:100%;
+    max-width:326px;
+    border-radius:1.6666666667rem;
+    margin:0px auto;
+    margin-bottom:20px;
+    background:#100907;
+    text-align:center;
+    position:relative;
+}
+
+.pricingTable .tabsBtnHolder ul li{
+    float:left;
+    width:calc(100% / 2);
+    display:inline-block;
+    transition:0.4s ease;
+}
+
+.pricingTable .tabsBtnHolder ul li p{
+    color:#fff;
+    z-index:10;
+    padding-top: 15px;
+    padding-right: 15px;
+    position:relative;
+    cursor:pointer;
+}
+
+.pricingTable .tabsBtnHolder ul li p.active{
+    color:#060404;
+}
+
+.pricingTable .tabsBtnHolder ul li.indicator{
+    position: absolute;
+    top: 50%;
+    left: 2px; /*163px*/
+    background: #fff;
+    height: calc(99% - 2px);
+    transform: translateY(-50%);
+    border-radius: 1.5333333333rem;
+    width: 161px;
+    z-index:9
+}

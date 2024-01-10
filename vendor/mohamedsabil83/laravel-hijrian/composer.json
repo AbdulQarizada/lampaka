@@ -1,0 +1,73 @@
+{
+    "name": "mohamedsabil83/laravel-hijrian",
+    "description": "Hijri-Gregorian date converter for Laravel",
+    "keywords": [
+        "Gregorian",
+        "Gregory",
+        "Hijri",
+        "converter",
+        "date",
+        "laravel",
+        "laravel-hijrian"
+    ],
+    "homepage": "https://github.com/mohamedsabil83/laravel-hijrian",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mohamed Sabil",
+            "email": "me@mohamedsabil83.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.4|^8.0",
+        "spatie/laravel-package-tools": "^1.9.2",
+        "illuminate/contracts": "^5.8|^6.0|^7.0|^8.0|^9.0"
+    },
+    "require-dev": {
+        "nunomaduro/collision": "^5.10|^6.1",
+        "nunomaduro/larastan": "^1.0|^2.0",
+        "orchestra/testbench": "^6.23|^7.0",
+        "pestphp/pest": "^1.21",
+        "pestphp/pest-plugin-laravel": "^1.1",
+        "phpstan/extension-installer": "^1.1",
+        "phpstan/phpstan-deprecation-rules": "^1.0",
+        "phpstan/phpstan-phpunit": "^1.0",
+        "phpunit/phpunit": "^9.5",
+        "spatie/laravel-ray": "^1.26"
+    },
+    "autoload": {
+        "psr-4": {
+            "Mohamedsabil83\\LaravelHijrian\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Mohamedsabil83\\LaravelHijrian\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "analyse": "vendor/bin/phpstan analyse",
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest coverage"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "phpstan/extension-installer": true,
+            "pestphp/pest-plugin": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Mohamedsabil83\\LaravelHijrian\\LaravelHijrianServiceProvider"
+            ],
+            "aliases": {
+                "Hijrian": "Mohamedsabil83\\LaravelHijrian\\Facades\\LaravelHijrian"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

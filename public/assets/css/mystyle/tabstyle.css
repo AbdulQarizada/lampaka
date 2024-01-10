@@ -1,0 +1,15 @@
+.card-one {
+    position: relative;
+    border-radius: 0.5em;
+    padding: 0;
+    transition: all 0.2s ease-in-out;
+    background-color: white;
+}
+
+    .card:nth-child(even) {
+        margin: 0 1em;
+    }
+
+.card-one:hover {
+    transform: scale(1.05);
+}
