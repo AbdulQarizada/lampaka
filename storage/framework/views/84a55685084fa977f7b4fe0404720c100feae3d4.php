@@ -1,11 +1,10 @@
-@extends(Cookie::get('Layout') == 'Layoutsidebar' ? 'layouts.master' : 'layouts.master-layouts')
-@section('title') Expenses Details @endsection
-@section('css')
-@endsection
-@section('content')
+<?php $__env->startSection('title'); ?> Expenses Details <?php $__env->stopSection(); ?>
+<?php $__env->startSection('css'); ?>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
 <div class="row mt-4">
     <div class="col-md-4 col-sm-12 ">
-        <a href="{{route('IndexExpenses')}}" class="btn btn-outline-info btn-lg waves-effect mb-3 btn-label waves-light"><i class="bx bx-left-arrow  font-size-16 label-icon"></i>Back</a>
+        <a href="<?php echo e(route('IndexExpenses')); ?>" class="btn btn-outline-info btn-lg waves-effect mb-3 btn-label waves-light"><i class="bx bx-left-arrow  font-size-16 label-icon"></i>Back</a>
     </div>
 </div>
 <div class="row">
@@ -29,62 +28,63 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($datas as $data)
+                    <?php $__currentLoopData = $datas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <tr>
                         <td>
-                            <input class="form-check-input" type="checkbox" id="formCheck1" name="ids[]" value="{{$data -> id }}">
+                            <input class="form-check-input" type="checkbox" id="formCheck1" name="ids[]" value="<?php echo e($data -> id); ?>">
                         </td>
                         <td>
                             <div class="avatar-xs">
                                 <span class="avatar-title bg-dark rounded-circle">
-                                    {{$loop->iteration}}
+                                    <?php echo e($loop->iteration); ?>
+
                                 </span>
                             </div>
                         </td>
                         <td>
-                            <h5 class="font-size-14 mb-1"><a href="#" class="text-dark">{{$data -> Item}}</a></h5>
+                            <h5 class="font-size-14 mb-1"><a href="#" class="text-dark"><?php echo e($data -> Item); ?></a></h5>
                         </td>
                         <td>
                             <div>
-                                <h6 class="font-size-14 mb-1 font-mute">{{$data -> Description}}</h5>
+                                <h6 class="font-size-14 mb-1 font-mute"><?php echo e($data -> Description); ?></h5>
 
                             </div>
                         </td>
                         <td>
                             <div>
-                                <h5 class="font-size-14 mb-1"><a href="#" class="text-dark">{{$data -> Amount}} - </a><a href="#" class=" badge badge-soft-danger text-dark">{{$data -> Currency}}</a></h5>
+                                <h5 class="font-size-14 mb-1"><a href="#" class="text-dark"><?php echo e($data -> Amount); ?> - </a><a href="#" class=" badge badge-soft-danger text-dark"><?php echo e($data -> Currency); ?></a></h5>
 
                             </div>
                         </td>
                         <td>
                             <div>
-                                <h5 class="font-size-18 mb-1"><a href="#" class="text-dark badge badge-soft-primary">{{Carbon\Carbon::parse($data -> Date) -> format("j F Y")}}</a></h5>
+                                <h5 class="font-size-18 mb-1"><a href="#" class="text-dark badge badge-soft-primary"><?php echo e(Carbon\Carbon::parse($data -> Date) -> format("j F Y")); ?></a></h5>
                             </div>
                         </td>
                         <td>
                             <div>
-                                <h5 class="font-size-16 mb-1"><a target="_Blanck" href="{{URL::asset('/uploads/Expenses/Bills/'.$data -> Bill)}}" class="badge badge-soft-info">Click To View Bill</a></h5>
+                                <h5 class="font-size-16 mb-1"><a target="_Blanck" href="<?php echo e(URL::asset('/uploads/Expenses/Bills/'.$data -> Bill)); ?>" class="badge badge-soft-info">Click To View Bill</a></h5>
                             </div>
                         </td>
                         <td>
                             <div>
-                                <h5 class="font-size-14 mb-1"><a href="#" class="text-dark">{{$data ->  UFirstName }} {{$data ->  ULastName }}</a></h5>
+                                <h5 class="font-size-14 mb-1"><a href="#" class="text-dark"><?php echo e($data ->  UFirstName); ?> <?php echo e($data ->  ULastName); ?></a></h5>
                             </div>
                         </td>
                         <td>
                             <div class="d-flex flex-wrap gap-2">
-                            <a href="{{route('DeleteExpense', ['data' => $data -> id])}}" class="btn btn-sm btn-outline-danger waves-effect waves-light delete-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Record">
+                            <a href="<?php echo e(route('DeleteExpense', ['data' => $data -> id])); ?>" class="btn btn-sm btn-outline-danger waves-effect waves-light delete-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Record">
                                     <i class="mdi mdi-delete-outline font-size-16 align-middle"></i>
                                 </a>
                             </div>
                         </td>
                     </tr>
-                    @endforeach
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </tbody>
             </table>
         </div>
         <form class="needs-validation" method="POST" enctype="multipart/form-data" id="ExportForm" novalidate>
-            @csrf
+            <?php echo csrf_field(); ?>
             <input type="text" class="d-none" name="FormIds" required>
             <a class="btn btn-outline-primary waves-effect float-end  waves-light mt-3 ExportOrphans"><i class="mdi mdi-microsoft-excel me-1"></i> Export To Excel</a>
         </form>
@@ -93,16 +93,16 @@
 <div class="row">
     <div class="col-lg-12">
         <ul class="pagination pagination-rounded justify-content-center mt-3 mb-4 pb-1">
-            {!! $datas->links() !!} <span class="m-2 text-white badge bg-dark">{{ $datas->total() }} Total Records</span>
+            <?php echo $datas->links(); ?> <span class="m-2 text-white badge bg-dark"><?php echo e($datas->total()); ?> Total Records</span>
         </ul>
     </div>
 </div>
-@endsection
-@section('script')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('script'); ?>
 <!-- Sweetalert -->
-<script src="{{ URL::asset('/assets/js/pages/sweetalert.min.js') }}"></script>
+<script src="<?php echo e(URL::asset('/assets/js/pages/sweetalert.min.js')); ?>"></script>
 <!-- Fomr Validation -->
-<script src="{{ URL::asset('/assets/js/pages/form-validation.init.js') }}"></script>
+<script src="<?php echo e(URL::asset('/assets/js/pages/form-validation.init.js')); ?>"></script>
 <script>
     $('.delete-confirm').on('click', function(event) {
         event.preventDefault();
@@ -142,7 +142,7 @@
                     url: '/GetDistricts/' + dID,
                     type: "GET",
                     data: {
-                        "_token": "{{ csrf_token() }}"
+                        "_token": "<?php echo e(csrf_token()); ?>"
                     },
                     dataType: "json",
                     success: function(data) {
@@ -170,7 +170,7 @@
                     url: "",
                     type: "GET",
                     data: {
-                        "_token": "{{ csrf_token() }}",
+                        "_token": "<?php echo e(csrf_token()); ?>",
                         "data": dID
                     },
                     dataType: "json",
@@ -206,4 +206,5 @@
         $('input:checkbox').not(this).prop('checked', this.checked);
     });
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make(Cookie::get('Layout') == 'Layoutsidebar' ? 'layouts.master' : 'layouts.master-layouts', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\TheStranger\Desktop\Projects\LampakaByte\lampaka\resources\views/Expenses/Details.blade.php ENDPATH**/ ?>
