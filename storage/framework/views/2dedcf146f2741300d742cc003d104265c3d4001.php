@@ -125,7 +125,7 @@ endif;
 unset($__errorArgs, $__bag); ?>
                                                                 </div>
                                                             </div>
-                                                            <!-- <div class="col-md-4">
+                                                             <div class="col-md-4">
                                                                 <div class="mb-3 position-relative">
                                                                     <label for="Date" class="form-label">Date <i class="mdi mdi-asterisk text-danger"></i></label>
                                                                     <div class="input-group " id="example-date-input">
@@ -151,8 +151,7 @@ endif;
 unset($__errorArgs, $__bag); ?>
                                                                     </div>
                                                                 </div>
-                                                            </div> -->
-
+                                                            </div> 
                                                             <div class="col-md-4">
                                                                 <div class="mb-3 position-relative">
                                                                     <label for="Currency" class="form-label">Currency <i class="mdi mdi-asterisk text-danger"></i></label>
@@ -256,7 +255,7 @@ unset($__errorArgs, $__bag); ?>
         </div>
     </div>
 </div>
-<div class="row ">
+<!-- <div class="row ">
     <div class="col-md-12">
         <div class="collapse hide" id="addLookUp">
             <div class="card shadow-none card-body text-muted mb-0 mb-4" style="border: 2px dashed #50a5f1;">
@@ -355,7 +354,7 @@ unset($__errorArgs, $__bag); ?>
             </div>
         </div>
     </div>
-</div>
+</div> -->
 <div class="row mt-4">
     <?php if(Auth::user()->IsExpensive == 1): ?>
     <div class="row">
