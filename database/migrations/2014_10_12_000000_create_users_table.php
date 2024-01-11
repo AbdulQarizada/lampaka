@@ -21,7 +21,6 @@ class CreateUsersTable extends Migration
             $table->string('FullName')->nullable();
             $table->string('LastName')->nullable();
             $table->string('Job')->nullable();
-            $table->integer('Role')->nullable();
             $table->integer('IsActive')->nullable();
             $table->integer('Gender_ID')->nullable();
             $table->integer('Province_ID')->nullable();
@@ -29,9 +28,7 @@ class CreateUsersTable extends Migration
 
 
             $table->integer('IsSuperAdmin')->nullable();
-            $table->integer('IsEmployee')->nullable();
-            $table->integer('IsExpensive')->nullable();
-            $table->integer('IsOrphanSponsor')->nullable();
+            $table->integer('IsExpense')->nullable();
 
             $table->integer('Created_By')->nullable();
 
@@ -48,7 +45,7 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
-   User::create(['FirstName' => 'AbdulWahab','LastName' => 'Qarizada','Job' => 'Developer','dob'=>'1993-12-14','email' => 'admin@gmail.com','password' => Hash::make('admin'),'email_verified_at'=>'2022-01-02 17:04:58','Profile' => 'images/avatar-1.jpg','created_at' => now(),]);
+   User::create(['FirstName' => 'AbdulWahab','LastName' => 'Qarizada','Job' => 'Developer','IsActive'=>1,'IsExpense'=>1,'IsSuperAdmin'=>1,'dob'=>'1993-12-14','email' => 'abdul.wahab@lampakabyte.com','password' => Hash::make('Qarizada@1732'),'email_verified_at'=>'2022-01-02 17:04:58','Profile' => 'images/avatar-1.jpg','created_at' => now(),]);
     }
 
     /**

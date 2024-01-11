@@ -1,7 +1,7 @@
 @extends('layouts.master-layouts')
 
 @section('title')
-Create Account | Qamar Foundation
+Create Account | Qarizada
 @endsection
 
 @section('css')

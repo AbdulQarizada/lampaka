@@ -231,7 +231,7 @@
     </div>
 </div> -->
 <div class="row mt-4">
-    @if(Auth::user()->IsExpensive == 1)
+    @if(Auth::user()->IsExpense == 1)
     <div class="row">
         <div class="col-md-2 mt-2">
             <h1 class="font-size-24 fw-medium text-dark text-muted">{{ $PageInfo }} Home Expenses </h1>
@@ -258,7 +258,7 @@
     @endif
     <div class="col-xl-12">
         <div class="row">
-            @if(Auth::user()->IsExpensive == 1)
+            @if(Auth::user()->IsExpense == 1)
             <div class="col-md-4 mb-2">
                 <a href="{{route('DetailsExpense', ['data' => $PageInfo])}}">
                     <div class="card-one mini-stats-wid border border-secondary">
@@ -274,7 +274,7 @@
                 </a>
             </div>
             @endif
-            @if(Auth::user()->IsExpensive == 1)
+            @if(Auth::user()->IsExpense == 1)
             <div class="col-md-4 mb-2">
                 <a href="{{route('DetailsExpense', ['data' => $PageInfo])}}">
                     <div class="card-one mini-stats-wid border border-secondary">
@@ -290,7 +290,7 @@
                 </a>
             </div>
             @endif
-            @if(Auth::user()->IsExpensive == 1)
+            @if(Auth::user()->IsExpense == 1)
             <div class="col-md-4 mb-2">
                 <a href="{{route('DetailsExpense', ['data' => $PageInfo])}}">
                     <div class="card-one mini-stats-wid border border-secondary">

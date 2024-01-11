@@ -38,7 +38,6 @@ class UserController extends Controller
       ->leftjoin('locations as b', 'users.District_ID', '=', 'b.id')
       ->join('users as d', 'users.Created_By', '=', 'd.id')
       ->select(['users.*',  'a.Name as ProvinceName', 'b.Name as DistrictName', 'd.FirstName as UFirstName', 'd.LastName as ULastName', 'd.Job as UJob'])
-      ->where("users.IsEmployee", "=", 1)
       ->paginate(100);
     return view('SystemManagement.User.All', compact('datas', 'PageInfo'));
   }
@@ -50,7 +49,6 @@ class UserController extends Controller
       ->leftjoin('locations as b', 'users.District_ID', '=', 'b.id')
       ->join('users as d', 'users.Created_By', '=', 'd.id')
       ->select(['users.*', 'a.Name as ProvinceName', 'b.Name as DistrictName', 'd.FirstName as UFirstName', 'd.LastName as ULastName', 'd.Job as UJob'])
-      ->where("users.IsEmployee", "=", 1)
       ->where("users.IsActive", "=", 1)
       ->paginate(100);
     return view('SystemManagement.User.All', compact('datas', 'PageInfo'));
@@ -64,7 +62,6 @@ class UserController extends Controller
       ->leftjoin('locations as b', 'users.District_ID', '=', 'b.id')
       ->join('users as d', 'users.Created_By', '=', 'd.id')
       ->select(['users.*', 'a.Name as ProvinceName', 'b.Name as DistrictName',  'd.FirstName as UFirstName', 'd.LastName as ULastName', 'd.Job as UJob'])
-      ->where("users.IsEmployee", "=", 1)
       ->where("users.IsActive", "!=", 1)
       ->paginate(100);
     return view('SystemManagement.User.All', compact('datas', 'PageInfo'));
@@ -109,7 +106,6 @@ class UserController extends Controller
       'Job' => request('Job'),
       'email' => request('email'),
       'password' => Hash::make(request('password')),
-      'IsEmployee' => 1,
       'Profile' => 'avatar.jpg',
       'IsActive' => 0,
       'Created_By' => auth()->user()->id,
@@ -215,20 +211,7 @@ class UserController extends Controller
 
     $data->update([
       'IsSuperAdmin' => request('IsSuperAdmin'),
-      'IsOrphanRelief' => request('IsOrphanRelief'),
-      'IsAidAndRelief' => request('IsAidAndRelief'),
-      'IsWash' => request('IsWash'),
-      'IsEducation' => request('IsEducation'),
-      'IsInitiative' => request('IsInitiative'),
-      'IsMedicalSector' => request('IsMedicalSector'),
-      'IsFoodAppeal' => request('IsFoodAppeal'),
-      'IsQamarCareCard' => request('IsQamarCareCard'),
-      'IsAppealsDistributions' => request('IsAppealsDistributions'),
-      'IsDonorsAndDonorBoxes' => request('IsDonorsAndDonorBoxes'),
-      'IsVolunteer' => request('IsVolunteer'),
-      'IsRepresentative' => request('IsRepresentative'),
-      'IsManager' => request('IsManager'),
-      'IsGeneralManager' => request('IsGeneralManager'),
+      'IsExpense' => request('IsExpense'),
     ]);
     return back()->with('toast_success', 'Role Added Successfully!');
   }

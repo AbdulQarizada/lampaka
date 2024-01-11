@@ -356,7 +356,7 @@ unset($__errorArgs, $__bag); ?>
     </div>
 </div> -->
 <div class="row mt-4">
-    <?php if(Auth::user()->IsExpensive == 1): ?>
+    <?php if(Auth::user()->IsExpense == 1): ?>
     <div class="row">
         <div class="col-md-2 mt-2">
             <h1 class="font-size-24 fw-medium text-dark text-muted"><?php echo e($PageInfo); ?> Home Expenses </h1>
@@ -397,7 +397,7 @@ unset($__errorArgs, $__bag); ?>
     <?php endif; ?>
     <div class="col-xl-12">
         <div class="row">
-            <?php if(Auth::user()->IsExpensive == 1): ?>
+            <?php if(Auth::user()->IsExpense == 1): ?>
             <div class="col-md-4 mb-2">
                 <a href="<?php echo e(route('DetailsExpense', ['data' => $PageInfo])); ?>">
                     <div class="card-one mini-stats-wid border border-secondary">
@@ -413,7 +413,7 @@ unset($__errorArgs, $__bag); ?>
                 </a>
             </div>
             <?php endif; ?>
-            <?php if(Auth::user()->IsExpensive == 1): ?>
+            <?php if(Auth::user()->IsExpense == 1): ?>
             <div class="col-md-4 mb-2">
                 <a href="<?php echo e(route('DetailsExpense', ['data' => $PageInfo])); ?>">
                     <div class="card-one mini-stats-wid border border-secondary">
@@ -429,7 +429,7 @@ unset($__errorArgs, $__bag); ?>
                 </a>
             </div>
             <?php endif; ?>
-            <?php if(Auth::user()->IsExpensive == 1): ?>
+            <?php if(Auth::user()->IsExpense == 1): ?>
             <div class="col-md-4 mb-2">
                 <a href="<?php echo e(route('DetailsExpense', ['data' => $PageInfo])); ?>">
                     <div class="card-one mini-stats-wid border border-secondary">

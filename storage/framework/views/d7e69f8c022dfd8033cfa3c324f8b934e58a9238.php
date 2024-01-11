@@ -7,12 +7,12 @@
 <?php $__env->startSection('content'); ?>
 <?php if(Cookie::get('Layout') == 'LayoutNoSidebar'): ?>
 <div class="row">
-    <?php if(Auth::user()->IsExpensive == 1): ?>
-    <h1 class="font-size-24 mt-4 mb-4 fw-medium text-dark text-muted">Qarizada Family</h1>
+    <?php if(Auth::user()->IsExpense == 1): ?>
+    <h1 class="font-size-24 mt-4 mb-4 fw-medium text-dark text-muted">Qarizada</h1>
     <?php endif; ?>
     <div class="col-xl-12">
         <div class="row">
-            <?php if(Auth::user()->IsExpensive == 1): ?>
+            <?php if(Auth::user()->IsExpense == 1): ?>
             <div class="col-md-2 mb-2">
                 <a href="<?php echo e(route('IndexExpenses')); ?>">
                     <div class="card-one  mini-stats-wid border border-secondary">
