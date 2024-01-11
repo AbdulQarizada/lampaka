@@ -441,6 +441,51 @@ unset($__errorArgs, $__bag); ?>
         </div>
     </div>
 </div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="">
+            <div class="table-responsive">
+                <table class="table project-list-table table-nowrap align-middle table-borderless">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="width: 100px">#</th>
+                            <th scope="col">All</th>
+                            <th scope="col">Yearly</th>
+                            <th scope="col">Monthly</th>
+                            <th scope="col">Daily</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <h1>CANADA</h1>
+                            </td>
+                            <td>
+                                <h1 class="text-danger font-size-24"><?php echo e($AllCanadaExpenses); ?> <span class="text-success">&#36;</span></h1>
+                            </td>
+                            <td>
+                                <h5 class="text-truncate font-size-14"><a href="javascript: void(0);" class=" badge bg-warning"><?php echo e(Carbon\Carbon::now()->format('Y')); ?></a></h5>
+                                <h4 class="text-warning"><?php echo e($YearlyCanadaExpenses); ?> <span class="text-success">&#36;</span></h4>
+                            </td>
+                            <td>
+                                <h5 class="text-truncate font-size-14"><a href="javascript: void(0);" class=" badge bg-primary"><?php echo e(Carbon\Carbon::now()->format('F')); ?></a></h5>
+                                <h4 class="text-primary"><?php echo e($MonthlyCanadaExpenses); ?> <span class="text-success">&#36;</span></h4>
+                            </td>
+                            <td>
+                                <h5 class="text-truncate font-size-14"><a href="javascript: void(0);" class=" badge bg-info"><?php echo e(Carbon\Carbon::now()->format('d')); ?></a></h5>
+                                <h4 class="text-info"><?php echo e($DailyCanadaExpenses); ?> <span class="text-success">&#36;</span></h4>
+                            </td>
+                            <td>
+                                <a href="<?php echo e(route('DetailsExpense', ['Canada'])); ?>" class="btn btn-outline-warning btn-sm text-center waves-effect waves-light btn-rounded"><i class="mdi mdi-format-line-weight me-1"></i>Report</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 <?php endif; ?>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('script'); ?>

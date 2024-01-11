@@ -316,6 +316,51 @@
         </div>
     </div>
 </div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="">
+            <div class="table-responsive">
+                <table class="table project-list-table table-nowrap align-middle table-borderless">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="width: 100px">#</th>
+                            <th scope="col">All</th>
+                            <th scope="col">Yearly</th>
+                            <th scope="col">Monthly</th>
+                            <th scope="col">Daily</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <h1>CANADA</h1>
+                            </td>
+                            <td>
+                                <h1 class="text-danger font-size-24">{{ $AllCanadaExpenses }} <span class="text-success">&#36;</span></h1>
+                            </td>
+                            <td>
+                                <h5 class="text-truncate font-size-14"><a href="javascript: void(0);" class=" badge bg-warning">{{ Carbon\Carbon::now()->format('Y') }}</a></h5>
+                                <h4 class="text-warning">{{ $YearlyCanadaExpenses }} <span class="text-success">&#36;</span></h4>
+                            </td>
+                            <td>
+                                <h5 class="text-truncate font-size-14"><a href="javascript: void(0);" class=" badge bg-primary">{{ Carbon\Carbon::now()->format('F') }}</a></h5>
+                                <h4 class="text-primary">{{ $MonthlyCanadaExpenses }} <span class="text-success">&#36;</span></h4>
+                            </td>
+                            <td>
+                                <h5 class="text-truncate font-size-14"><a href="javascript: void(0);" class=" badge bg-info">{{ Carbon\Carbon::now()->format('d') }}</a></h5>
+                                <h4 class="text-info">{{ $DailyCanadaExpenses }} <span class="text-success">&#36;</span></h4>
+                            </td>
+                            <td>
+                                <a href="{{route('DetailsExpense', ['Canada'])}}" class="btn btn-outline-warning btn-sm text-center waves-effect waves-light btn-rounded"><i class="mdi mdi-format-line-weight me-1"></i>Report</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 @endif
 @endsection
 @section('script')

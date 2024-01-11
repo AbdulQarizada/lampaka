@@ -41,6 +41,13 @@ class ExpensesController extends Controller
     $MonthlyLaghmanExpenses = Expense::Where("Type_ID", "=", $Type_ID_Laghman->id)->whereYear("Date", "=", now()->format('Y'))->whereMonth("Date", "=", now()->format('m'))->sum('Amount');
     $DailyLaghmanExpenses = Expense::Where("Type_ID", "=", $Type_ID_Laghman->id)->whereYear("Date", "=", now()->format('Y'))->whereMonth("Date", "=", now()->format('m'))->whereDay("Date", "=", now()->format('d'))->sum('Amount');
 
+    // for Canada 
+    $Type_ID_Canada =   LookUp::where("Name", "=", "Canada")->first();
+    $AllCanadaExpenses = Expense::Where("Type_ID", "=", $Type_ID_Canada->id)->sum('Amount');
+    $YearlyCanadaExpenses = Expense::Where("Type_ID", "=", $Type_ID_Canada->id)->whereYear("Date", "=", now()->format('Y'))->sum('Amount');
+    $MonthlyCanadaExpenses = Expense::Where("Type_ID", "=", $Type_ID_Canada->id)->whereYear("Date", "=", now()->format('Y'))->whereMonth("Date", "=", now()->format('m'))->sum('Amount');
+    $DailyCanadaExpenses = Expense::Where("Type_ID", "=", $Type_ID_Canada->id)->whereYear("Date", "=", now()->format('Y'))->whereMonth("Date", "=", now()->format('m'))->whereDay("Date", "=", now()->format('d'))->sum('Amount');
+
     return view(
       'Expenses.Index',
       [
@@ -54,6 +61,11 @@ class ExpensesController extends Controller
         'YearlyLaghmanExpenses' => $YearlyLaghmanExpenses,
         'MonthlyLaghmanExpenses' => $MonthlyLaghmanExpenses,
         'DailyLaghmanExpenses' => $DailyLaghmanExpenses,
+
+        'AllCanadaExpenses' => $AllCanadaExpenses,
+        'YearlyCanadaExpenses' => $YearlyCanadaExpenses,
+        'MonthlyCanadaExpenses' => $MonthlyCanadaExpenses,
+        'DailyCanadaExpenses' => $DailyCanadaExpenses,
 
         'currencies' => $Currencies,
         'items' => $Items, 'homes' => $Homes,
