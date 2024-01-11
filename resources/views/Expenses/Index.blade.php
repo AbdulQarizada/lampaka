@@ -274,7 +274,7 @@
                                 <h4 class="text-info">{{ $DailyKabulExpenses }} <span class="text-success">&#1547;</span></h4>
                             </td>
                             <td>
-                                <a class="btn btn-outline-warning btn-sm text-center waves-effect waves-light btn-rounded"><i class="mdi mdi-format-line-weight me-1"></i>Report</a>
+                                <a href="{{route('DetailsExpense', ['Kabul'])}}" class="btn btn-outline-warning btn-sm text-center waves-effect waves-light btn-rounded"><i class="mdi mdi-format-line-weight me-1"></i>Report</a>
                             </td>
                         </tr>
                         <tr>
@@ -297,7 +297,7 @@
                                 <h4 class="text-info">{{ $DailyLaghmanExpenses }} <span class="text-success">&#1547;</span></h4>
                             </td>
                             <td>
-                                <a class="btn btn-outline-warning btn-sm text-center waves-effect waves-light btn-rounded"><i class="mdi mdi-format-line-weight me-1"></i>Report</a>
+                                <a href="{{route('DetailsExpense', ['Laghman'])}}" class="btn btn-outline-warning btn-sm text-center waves-effect waves-light btn-rounded"><i class="mdi mdi-format-line-weight me-1"></i>Report</a>
                             </td>
                         </tr>
                     </tbody>

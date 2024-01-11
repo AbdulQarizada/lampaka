@@ -399,7 +399,7 @@ unset($__errorArgs, $__bag); ?>
                                 <h4 class="text-info"><?php echo e($DailyKabulExpenses); ?> <span class="text-success">&#1547;</span></h4>
                             </td>
                             <td>
-                                <a class="btn btn-outline-warning btn-sm text-center waves-effect waves-light btn-rounded"><i class="mdi mdi-format-line-weight me-1"></i>Report</a>
+                                <a href="<?php echo e(route('DetailsExpense', ['Kabul'])); ?>" class="btn btn-outline-warning btn-sm text-center waves-effect waves-light btn-rounded"><i class="mdi mdi-format-line-weight me-1"></i>Report</a>
                             </td>
                         </tr>
                         <tr>
@@ -422,7 +422,7 @@ unset($__errorArgs, $__bag); ?>
                                 <h4 class="text-info"><?php echo e($DailyLaghmanExpenses); ?> <span class="text-success">&#1547;</span></h4>
                             </td>
                             <td>
-                                <a class="btn btn-outline-warning btn-sm text-center waves-effect waves-light btn-rounded"><i class="mdi mdi-format-line-weight me-1"></i>Report</a>
+                                <a href="<?php echo e(route('DetailsExpense', ['Laghman'])); ?>" class="btn btn-outline-warning btn-sm text-center waves-effect waves-light btn-rounded"><i class="mdi mdi-format-line-weight me-1"></i>Report</a>
                             </td>
                         </tr>
                     </tbody>
