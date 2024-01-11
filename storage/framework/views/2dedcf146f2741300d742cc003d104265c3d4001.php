@@ -54,11 +54,11 @@ unset($__errorArgs, $__bag); ?>" value="<?php echo e(old('Item_ID')); ?>" id="It
                                                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                                         </select>
                                                                         <a href="#" data-bs-toggle="collapse" data-bs-target="#addLookUp" aria-expanded="false" aria-controls="addLookUp">
-                                                                        <div class="input-group-prepend">
-                                                                            <div class="input-group-text">                                                                              
-                                                                                <i class="mdi mdi-plus me-1 font-size-16"></i>                                                                               
+                                                                            <div class="input-group-prepend">
+                                                                                <div class="input-group-text">
+                                                                                    <i class="mdi mdi-plus me-1 font-size-16"></i>
+                                                                                </div>
                                                                             </div>
-                                                                        </div>
                                                                         </a>
                                                                     </div>
                                                                     <?php $__errorArgs = ['Item_ID'];
@@ -85,7 +85,7 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" value="<?php echo e(old('Description')); ?>" id="Description" name="Description" >
+unset($__errorArgs, $__bag); ?>" value="<?php echo e(old('Description')); ?>" id="Description" name="Description">
                                                                     <?php $__errorArgs = ['Description'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -125,7 +125,7 @@ endif;
 unset($__errorArgs, $__bag); ?>
                                                                 </div>
                                                             </div>
-                                                             <div class="col-md-4">
+                                                            <div class="col-md-4">
                                                                 <div class="mb-3 position-relative">
                                                                     <label for="Date" class="form-label">Date <i class="mdi mdi-asterisk text-danger"></i></label>
                                                                     <div class="input-group " id="example-date-input">
@@ -151,7 +151,7 @@ endif;
 unset($__errorArgs, $__bag); ?>
                                                                     </div>
                                                                 </div>
-                                                            </div> 
+                                                            </div>
                                                             <div class="col-md-4">
                                                                 <div class="mb-3 position-relative">
                                                                     <label for="Currency_ID" class="form-label">Currency <i class="mdi mdi-asterisk text-danger"></i></label>
@@ -255,7 +255,8 @@ unset($__errorArgs, $__bag); ?>
         </div>
     </div>
 </div>
-<!-- <div class="row ">
+<?php if(Auth::user()->IsExpense == 1): ?>
+<div class="row ">
     <div class="col-md-12">
         <div class="collapse hide" id="addLookUp">
             <div class="card shadow-none card-body text-muted mb-0 mb-4" style="border: 2px dashed #50a5f1;">
@@ -354,101 +355,93 @@ unset($__errorArgs, $__bag); ?>
             </div>
         </div>
     </div>
-</div> -->
-<div class="row mt-4">
-    <?php if(Auth::user()->IsExpense == 1): ?>
-    <div class="row">
-        <div class="col-md-2 mt-2">
-            <h1 class="font-size-24 fw-medium text-dark text-muted"><?php echo e($PageInfo); ?> Home Expenses </h1>
-        </div>
-        <div class="col-md-2 mt-3 col-xs-4">
-            <div class="mb-3 position-relative ">
-                <select class="form-select  form-select-lg <?php $__errorArgs = ['Type'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>" onchange="window.location.href = this.value;">
-                    <option>Select Home</option>
-                    <?php $__currentLoopData = $homes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $home): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <option value="<?php echo e(route('SearchExpense', ['data' => $home -> Name])); ?>" <?php echo e($PageInfo == '$home -> Name' ? 'selected' : ''); ?>><?php echo e($home -> Name); ?></option>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                </select>
-                <?php $__errorArgs = ['Type'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                <span class="invalid-feedback" role="alert">
-                    <strong><?php echo e($message); ?></strong>
-                </span>
-                <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
-            </div>
-        </div>
-
+</div>
+<?php endif; ?>
+<?php if(Auth::user()->IsExpense == 1): ?>
+<div class="row">
+    <div class="col-md-4 mt-2">
+        <h1 class="font-size-24 fw-medium text-dark text-muted">Homes Expenses </h1>
     </div>
-
-
-    <?php endif; ?>
-    <div class="col-xl-12">
-        <div class="row">
-            <?php if(Auth::user()->IsExpense == 1): ?>
-            <div class="col-md-4 mb-2">
-                <a href="<?php echo e(route('DetailsExpense', ['data' => $PageInfo])); ?>">
-                    <div class="card-one mini-stats-wid border border-secondary">
-                        <div class="card-body text-center">
-                            <div class="d-flex">
-                                <div class="flex-grow-1">
-                                    <h1 class="  display-5 text-danger"><?php echo e($AllHomeExpenses); ?> <span class="text-success">&#1547;</span></h1>
-                                    <p class="my-0 text-dark mt-2 font-size-24 ">All</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="">
+            <div class="table-responsive">
+                <table class="table project-list-table table-nowrap align-middle table-borderless">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="width: 100px">#</th>
+                            <th scope="col">All</th>
+                            <th scope="col">Yearly</th>
+                            <th scope="col">Monthly</th>
+                            <th scope="col">Daily</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <h1>KABUL</h1>
+                            </td>
+                            <td>
+                                <h1 class="text-danger font-size-24"><?php echo e($AllKabulExpenses); ?> <span class="text-success">&#1547;</span></h1>
+                            </td>
+                            <td>
+                                <h5 class="text-truncate font-size-14"><a href="javascript: void(0);" class=" badge bg-warning"><?php echo e(Carbon\Carbon::now()->format('Y')); ?></a></h5>
+                                <h4 class="text-warning"><?php echo e($YearlyKabulExpenses); ?> <span class="text-success">&#1547;</span></h4>
+                            </td>
+                            <td>
+                                <h5 class="text-truncate font-size-14"><a href="javascript: void(0);" class=" badge bg-primary"><?php echo e(Carbon\Carbon::now()->format('F')); ?></a></h5>
+                                <h4 class="text-primary"><?php echo e($MonthlyKabulExpenses); ?> <span class="text-success">&#1547;</span></h4>
+                            </td>
+                            <td>
+                                <h5 class="text-truncate font-size-14"><a href="javascript: void(0);" class=" badge bg-info"><?php echo e(Carbon\Carbon::now()->format('d')); ?></a></h5>
+                                <h4 class="text-info"><?php echo e($DailyKabulExpenses); ?> <span class="text-success">&#1547;</span></h4>
+                            </td>
+                            <td>
+                                <a class="btn btn-outline-warning btn-sm text-center waves-effect waves-light btn-rounded"><i class="mdi mdi-format-line-weight me-1"></i>Report</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h1>LAGHMAN</h1>
+                            </td>
+                            <td>
+                                <h1 class="text-danger font-size-24"><?php echo e($AllLaghmanExpenses); ?> <span class="text-success">&#1547;</span></h1>
+                            </td>
+                            <td>
+                                <h5 class="text-truncate font-size-14"><a href="javascript: void(0);" class=" badge bg-warning"><?php echo e(Carbon\Carbon::now()->format('Y')); ?></a></h5>
+                                <h4 class="text-warning"><?php echo e($YearlyLaghmanExpenses); ?> <span class="text-success">&#1547;</span></h4>
+                            </td>
+                            <td>
+                                <h5 class="text-truncate font-size-14"><a href="javascript: void(0);" class=" badge bg-primary"><?php echo e(Carbon\Carbon::now()->format('F')); ?></a></h5>
+                                <h4 class="text-primary"><?php echo e($MonthlyLaghmanExpenses); ?> <span class="text-success">&#1547;</span></h4>
+                            </td>
+                            <td>
+                                <h5 class="text-truncate font-size-14"><a href="javascript: void(0);" class=" badge bg-info"><?php echo e(Carbon\Carbon::now()->format('d')); ?></a></h5>
+                                <h4 class="text-info"><?php echo e($DailyLaghmanExpenses); ?> <span class="text-success">&#1547;</span></h4>
+                            </td>
+                            <td>
+                                <a class="btn btn-outline-warning btn-sm text-center waves-effect waves-light btn-rounded"><i class="mdi mdi-format-line-weight me-1"></i>Report</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <thead>
+                        <tr>
+                            <th scope="col" style="width: 100px">Total</th>
+                            <th scope="col" class="text-danger"><?php echo e($AllKabulExpenses + $AllLaghmanExpenses); ?> <span class="text-success">&#1547;</span></th>
+                            <th scope="col" class="text-warning"><?php echo e($YearlyKabulExpenses + $YearlyLaghmanExpenses); ?> <span class="text-success">&#1547;</span></th>
+                            <th scope="col" class="text-primary"><?php echo e($MonthlyKabulExpenses + $MonthlyLaghmanExpenses); ?> <span class="text-success">&#1547;</span></th>
+                            <th scope="col" class="text-info"><?php echo e($DailyKabulExpenses + $DailyLaghmanExpenses); ?> <span class="text-success">&#1547;</span></th>
+                            <th scope="col" class="text-danger"></th>
+                        </tr>
+                    </thead>
+                </table>
             </div>
-            <?php endif; ?>
-            <?php if(Auth::user()->IsExpense == 1): ?>
-            <div class="col-md-4 mb-2">
-                <a href="<?php echo e(route('DetailsExpense', ['data' => $PageInfo])); ?>">
-                    <div class="card-one mini-stats-wid border border-secondary">
-                        <div class="card-body text-center">
-                            <div class="d-flex">
-                                <div class="flex-grow-1">
-                                    <h1 class=" text-warning display-5 text-"><?php echo e($ThisYearHomeExpenses); ?> <span class="text-success">&#1547;</span></h1>
-                                    <p class="my-0  mt-2 font-size-24 text-dark ">This Year (Yet)</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <?php endif; ?>
-            <?php if(Auth::user()->IsExpense == 1): ?>
-            <div class="col-md-4 mb-2">
-                <a href="<?php echo e(route('DetailsExpense', ['data' => $PageInfo])); ?>">
-                    <div class="card-one mini-stats-wid border border-secondary">
-                        <div class="card-body text-center">
-                            <div class="d-flex">
-                                <div class="flex-grow-1">
-                                    <h1 class=" text-info display-5 text-"> <?php echo e($ThisMonthHomeExpenses); ?> <span class="text-success">&#1547;</span></h1>
-                                    <p class="my-0 text-dark mt-2 font-size-24">This Month (Yet)</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <?php endif; ?>
         </div>
     </div>
 </div>
-
+<?php endif; ?>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('script'); ?>
 <!-- Form Validation -->

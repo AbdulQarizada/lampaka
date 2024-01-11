@@ -19,7 +19,7 @@
                         <div class="card-body text-center">
                             <div class="d-flex">
                                 <div class="flex-grow-1">
-                                    <i class="mdi mdi-account-child  display-5 "></i>
+                                    <i class="mdi mdi-cart-outline  display-5 "></i>
                                     <p class="my-0 text-dark mt-2 font-size-18">Expenses</p>
                                 </div>
                             </div>

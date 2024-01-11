@@ -48,11 +48,11 @@
                                                                             @endforeach
                                                                         </select>
                                                                         <a href="#" data-bs-toggle="collapse" data-bs-target="#addLookUp" aria-expanded="false" aria-controls="addLookUp">
-                                                                        <div class="input-group-prepend">
-                                                                            <div class="input-group-text">                                                                              
-                                                                                <i class="mdi mdi-plus me-1 font-size-16"></i>                                                                               
+                                                                            <div class="input-group-prepend">
+                                                                                <div class="input-group-text">
+                                                                                    <i class="mdi mdi-plus me-1 font-size-16"></i>
+                                                                                </div>
                                                                             </div>
-                                                                        </div>
                                                                         </a>
                                                                     </div>
                                                                     @error('Item_ID')
@@ -65,7 +65,7 @@
                                                             <div class="col-md-4">
                                                                 <div class="mb-3 position-relative">
                                                                     <label for="Description" class="form-label ">Description </label>
-                                                                    <input type="text" class="form-control form-control-lg @error('Description') is-invalid @enderror" value="{{ old('Description') }}" id="Description" name="Description" >
+                                                                    <input type="text" class="form-control form-control-lg @error('Description') is-invalid @enderror" value="{{ old('Description') }}" id="Description" name="Description">
                                                                     @error('Description')
                                                                     <span class="invalid-feedback" role="alert">
                                                                         <strong>{{ $message }}</strong>
@@ -84,7 +84,7 @@
                                                                     @enderror
                                                                 </div>
                                                             </div>
-                                                             <div class="col-md-4">
+                                                            <div class="col-md-4">
                                                                 <div class="mb-3 position-relative">
                                                                     <label for="Date" class="form-label">Date <i class="mdi mdi-asterisk text-danger"></i></label>
                                                                     <div class="input-group " id="example-date-input">
@@ -96,7 +96,7 @@
                                                                         @enderror
                                                                     </div>
                                                                 </div>
-                                                            </div> 
+                                                            </div>
                                                             <div class="col-md-4">
                                                                 <div class="mb-3 position-relative">
                                                                     <label for="Currency_ID" class="form-label">Currency <i class="mdi mdi-asterisk text-danger"></i></label>
@@ -158,7 +158,8 @@
         </div>
     </div>
 </div>
-<!-- <div class="row ">
+@if(Auth::user()->IsExpense == 1)
+<div class="row ">
     <div class="col-md-12">
         <div class="collapse hide" id="addLookUp">
             <div class="card shadow-none card-body text-muted mb-0 mb-4" style="border: 2px dashed #50a5f1;">
@@ -229,87 +230,93 @@
             </div>
         </div>
     </div>
-</div> -->
-<div class="row mt-4">
-    @if(Auth::user()->IsExpense == 1)
-    <div class="row">
-        <div class="col-md-2 mt-2">
-            <h1 class="font-size-24 fw-medium text-dark text-muted">{{ $PageInfo }} Home Expenses </h1>
-        </div>
-        <div class="col-md-2 mt-3 col-xs-4">
-            <div class="mb-3 position-relative ">
-                <select class="form-select  form-select-lg @error('Type') is-invalid @enderror" onchange="window.location.href = this.value;">
-                    <option>Select Home</option>
-                    @foreach($homes as $home)
-                    <option value="{{route('SearchExpense', ['data' => $home -> Name])}}" {{ $PageInfo == '$home -> Name' ? 'selected' : '' }}>{{ $home -> Name}}</option>
-                    @endforeach
-                </select>
-                @error('Type')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-                @enderror
-            </div>
-        </div>
-
+</div>
+@endif
+@if(Auth::user()->IsExpense == 1)
+<div class="row">
+    <div class="col-md-4 mt-2">
+        <h1 class="font-size-24 fw-medium text-dark text-muted">Homes Expenses </h1>
     </div>
-
-
-    @endif
-    <div class="col-xl-12">
-        <div class="row">
-            @if(Auth::user()->IsExpense == 1)
-            <div class="col-md-4 mb-2">
-                <a href="{{route('DetailsExpense', ['data' => $PageInfo])}}">
-                    <div class="card-one mini-stats-wid border border-secondary">
-                        <div class="card-body text-center">
-                            <div class="d-flex">
-                                <div class="flex-grow-1">
-                                    <h1 class="  display-5 text-danger">{{ $AllHomeExpenses }} <span class="text-success">&#1547;</span></h1>
-                                    <p class="my-0 text-dark mt-2 font-size-24 ">All</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="">
+            <div class="table-responsive">
+                <table class="table project-list-table table-nowrap align-middle table-borderless">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="width: 100px">#</th>
+                            <th scope="col">All</th>
+                            <th scope="col">Yearly</th>
+                            <th scope="col">Monthly</th>
+                            <th scope="col">Daily</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <h1>KABUL</h1>
+                            </td>
+                            <td>
+                                <h1 class="text-danger font-size-24">{{ $AllKabulExpenses }} <span class="text-success">&#1547;</span></h1>
+                            </td>
+                            <td>
+                                <h5 class="text-truncate font-size-14"><a href="javascript: void(0);" class=" badge bg-warning">{{ Carbon\Carbon::now()->format('Y') }}</a></h5>
+                                <h4 class="text-warning">{{ $YearlyKabulExpenses }} <span class="text-success">&#1547;</span></h4>
+                            </td>
+                            <td>
+                                <h5 class="text-truncate font-size-14"><a href="javascript: void(0);" class=" badge bg-primary">{{ Carbon\Carbon::now()->format('F') }}</a></h5>
+                                <h4 class="text-primary">{{ $MonthlyKabulExpenses }} <span class="text-success">&#1547;</span></h4>
+                            </td>
+                            <td>
+                                <h5 class="text-truncate font-size-14"><a href="javascript: void(0);" class=" badge bg-info">{{ Carbon\Carbon::now()->format('d') }}</a></h5>
+                                <h4 class="text-info">{{ $DailyKabulExpenses }} <span class="text-success">&#1547;</span></h4>
+                            </td>
+                            <td>
+                                <a class="btn btn-outline-warning btn-sm text-center waves-effect waves-light btn-rounded"><i class="mdi mdi-format-line-weight me-1"></i>Report</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h1>LAGHMAN</h1>
+                            </td>
+                            <td>
+                                <h1 class="text-danger font-size-24">{{ $AllLaghmanExpenses }} <span class="text-success">&#1547;</span></h1>
+                            </td>
+                            <td>
+                                <h5 class="text-truncate font-size-14"><a href="javascript: void(0);" class=" badge bg-warning">{{ Carbon\Carbon::now()->format('Y') }}</a></h5>
+                                <h4 class="text-warning">{{ $YearlyLaghmanExpenses }} <span class="text-success">&#1547;</span></h4>
+                            </td>
+                            <td>
+                                <h5 class="text-truncate font-size-14"><a href="javascript: void(0);" class=" badge bg-primary">{{ Carbon\Carbon::now()->format('F') }}</a></h5>
+                                <h4 class="text-primary">{{ $MonthlyLaghmanExpenses }} <span class="text-success">&#1547;</span></h4>
+                            </td>
+                            <td>
+                                <h5 class="text-truncate font-size-14"><a href="javascript: void(0);" class=" badge bg-info">{{ Carbon\Carbon::now()->format('d') }}</a></h5>
+                                <h4 class="text-info">{{ $DailyLaghmanExpenses }} <span class="text-success">&#1547;</span></h4>
+                            </td>
+                            <td>
+                                <a class="btn btn-outline-warning btn-sm text-center waves-effect waves-light btn-rounded"><i class="mdi mdi-format-line-weight me-1"></i>Report</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <thead>
+                        <tr>
+                            <th scope="col" style="width: 100px">Total</th>
+                            <th scope="col" class="text-danger">{{ $AllKabulExpenses + $AllLaghmanExpenses }} <span class="text-success">&#1547;</span></th>
+                            <th scope="col" class="text-warning">{{ $YearlyKabulExpenses + $YearlyLaghmanExpenses }} <span class="text-success">&#1547;</span></th>
+                            <th scope="col" class="text-primary">{{ $MonthlyKabulExpenses + $MonthlyLaghmanExpenses }} <span class="text-success">&#1547;</span></th>
+                            <th scope="col" class="text-info">{{ $DailyKabulExpenses + $DailyLaghmanExpenses }} <span class="text-success">&#1547;</span></th>
+                            <th scope="col" class="text-danger"></th>
+                        </tr>
+                    </thead>
+                </table>
             </div>
-            @endif
-            @if(Auth::user()->IsExpense == 1)
-            <div class="col-md-4 mb-2">
-                <a href="{{route('DetailsExpense', ['data' => $PageInfo])}}">
-                    <div class="card-one mini-stats-wid border border-secondary">
-                        <div class="card-body text-center">
-                            <div class="d-flex">
-                                <div class="flex-grow-1">
-                                    <h1 class=" text-warning display-5 text-">{{ $ThisYearHomeExpenses }} <span class="text-success">&#1547;</span></h1>
-                                    <p class="my-0  mt-2 font-size-24 text-dark ">This Year (Yet)</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            @endif
-            @if(Auth::user()->IsExpense == 1)
-            <div class="col-md-4 mb-2">
-                <a href="{{route('DetailsExpense', ['data' => $PageInfo])}}">
-                    <div class="card-one mini-stats-wid border border-secondary">
-                        <div class="card-body text-center">
-                            <div class="d-flex">
-                                <div class="flex-grow-1">
-                                    <h1 class=" text-info display-5 text-"> {{ $ThisMonthHomeExpenses }} <span class="text-success">&#1547;</span></h1>
-                                    <p class="my-0 text-dark mt-2 font-size-24">This Month (Yet)</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            @endif
         </div>
     </div>
 </div>
-
+@endif
 @endsection
 @section('script')
 <!-- Form Validation -->
