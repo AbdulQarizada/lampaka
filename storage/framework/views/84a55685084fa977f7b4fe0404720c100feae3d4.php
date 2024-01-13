@@ -8,6 +8,15 @@
     </div>
 </div>
 <div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <div id="YealyExpensesID" class="apex-charts" dir="ltr"></div>
+            </div>
+        </div><!--end card-->
+    </div>
+</div>
+<div class="row">
     <div class="col-12">
         <h3 class="card-header bg-dark text-white"></h3>
         <div class="table-responsive">
@@ -73,7 +82,7 @@
                         </td>
                         <td>
                             <div class="d-flex flex-wrap gap-2">
-                            <a href="<?php echo e(route('DeleteExpense', ['data' => $data -> id])); ?>" class="btn btn-sm btn-outline-danger waves-effect waves-light delete-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Record">
+                                <a href="<?php echo e(route('DeleteExpense', ['data' => $data -> id])); ?>" class="btn btn-sm btn-outline-danger waves-effect waves-light delete-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Record">
                                     <i class="mdi mdi-delete-outline font-size-16 align-middle"></i>
                                 </a>
                             </div>
@@ -103,6 +112,10 @@
 <script src="<?php echo e(URL::asset('/assets/js/pages/sweetalert.min.js')); ?>"></script>
 <!-- Fomr Validation -->
 <script src="<?php echo e(URL::asset('/assets/js/pages/form-validation.init.js')); ?>"></script>
+
+
+<!-- apexcharts -->
+<script src="<?php echo e(URL::asset('/assets/libs/apexcharts/apexcharts.min.js')); ?>"></script>
 <script>
     $('.delete-confirm').on('click', function(event) {
         event.preventDefault();
@@ -205,6 +218,62 @@
     $("#checkAll").click(function() {
         $('input:checkbox').not(this).prop('checked', this.checked);
     });
+    (async () => {
+        const YealyExpensesConst = await fetch('<?php echo e(route('YealyExpense_ColumnChart', ['data' => $PageInfo])); ?>').then(response => response.json());
+        var YealyExpenseOption = {
+            chart: {
+                height: 400,
+                type: "bar",
+                toolbar: {
+                    show: !1
+                }
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: !1,
+                    columnWidth: "45%",
+                    endingShape: "rounded"
+                }
+            },
+            dataLabels: {
+                enabled: !1
+            },
+            stroke: {
+                show: !0,
+                width: 2,
+                colors: ["transparent"]
+            },
+            series: [{
+                    name: "Monthly Total",
+                    data: [YealyExpensesConst.jan, YealyExpensesConst.feb, YealyExpensesConst.mar, YealyExpensesConst.apr, YealyExpensesConst.may, YealyExpensesConst.jun, YealyExpensesConst.jul, YealyExpensesConst.aug, YealyExpensesConst.sep, YealyExpensesConst.oct, YealyExpensesConst.nov, YealyExpensesConst.dec]
+                }
+            ],
+            colors: [ "#556ee6"],
+            xaxis: {
+                categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+            },
+            yaxis: {
+                title: {
+                    text: "AFN",
+                    style: {
+                        fontWeight: "500"
+                    }
+                }
+            },
+            fill: {
+                opacity: 1
+            },
+            tooltip: {
+                y: {
+                    formatter: function formatter(e) {
+                        return "AFN " + e + "";
+                    }
+                }
+            }
+        };
+        var YealyExpenses = new ApexCharts(document.querySelector("#YealyExpensesID"), YealyExpenseOption);
+        YealyExpenses.render();
+    })();
 </script>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make(Cookie::get('Layout') == 'Layoutsidebar' ? 'layouts.master' : 'layouts.master-layouts', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\TheStranger\Desktop\Projects\LampakaByte\lampaka\resources\views/Expenses/Details.blade.php ENDPATH**/ ?>

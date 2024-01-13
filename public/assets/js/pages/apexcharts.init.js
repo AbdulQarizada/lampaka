@@ -231,7 +231,7 @@ options = {
   }],
   colors: ["#34c38f", "#556ee6", "#f46a6a"],
   xaxis: {
-    categories: ["Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"]
+    categories: ["Jan", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"]
   },
   yaxis: {
     title: {

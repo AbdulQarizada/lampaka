@@ -26,3 +26,5 @@ Route::post('/Expenses/BillUpload', [App\FileUpload\BillUpload::class, 'Bill_Upl
 
 //Search
 Route::get('/Expenses/Search/{data}', [App\Http\Controllers\Expenses\Homes\ExpensesController::class, 'Search'])->name('SearchExpense');
+
+Route::get('/Expenses/YealyExpense_ColumnChart/{data}', [App\Http\Controllers\Expenses\Homes\ExpensesController::class, 'YealyExpense_ColumnChart'])->name('YealyExpense_ColumnChart');

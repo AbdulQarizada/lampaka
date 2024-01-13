@@ -75,28 +75,7 @@ class ExpensesController extends Controller
   }
 
 
-  public function Search(string $data)
-  {
-    $mainLookUps = LookUp::where('look_ups.Parent_Name', '=', 'None')->get();
-    $Homes =   LookUp::where("Parent_Name", "=", "Home")->get();
-    $Items =   LookUp::where("Parent_Name", "=", "Item")->get();
-    $Currencies =   LookUp::where("Parent_Name", "=", "Currency")->get();
-
-    $Type_Name =   LookUp::where("Name", "=", $data)->first();
-    $PageInfo = $Type_Name->Name;
-
-    $AllHomeExpenses = Expense::Where("Type_ID", "=", $Type_Name->id)->sum('Amount');
-    $ThisYearHomeExpenses = Expense::Where("Type_ID", "=", $Type_Name->id)->whereYear("Date", "=", now()->format('Y'))->sum('Amount');
-    $ThisMonthHomeExpenses = Expense::Where("Type_ID", "=", $Type_Name->id)->whereYear("Date", "=", now()->format('Y'))->whereMonth("Date", "=", now()->format('m'))->sum('Amount');
-    return view('Expenses.Index', ['PageInfo' => $PageInfo,  'AllHomeExpenses' => $AllHomeExpenses, 'ThisYearHomeExpenses' => $ThisYearHomeExpenses, 'ThisMonthHomeExpenses' => $ThisMonthHomeExpenses, 'currencies' => $Currencies, 'items' => $Items, 'homes' => $Homes, 'mainLookUps' => $mainLookUps]);
-  }
-
-
-
-
-
-
-  public function Store(Request $request)
+   public function Store(Request $request)
   {
     $validator = $request->validate([
       'Type_ID' => 'bail|required|max:20',
@@ -138,10 +117,50 @@ class ExpensesController extends Controller
       ->join('look_ups as c', 'expenses.Currency_ID', '=', 'c.id')
       ->select('expenses.*', 'a.FirstName as UFirstName', 'a.LastName as ULastName', 'b.Name as Item', 'c.Name as Currency')
       ->orderByDesc('Date')
-      ->paginate(100);
+      ->paginate(50);
     $AllHomeExpenses = Expense::Where("Type_ID", "=", $Type_Name->id)->sum('Amount');
     $ThisYearHomeExpenses = Expense::Where("Type_ID", "=", $Type_Name->id)->whereYear("Date", "=", now()->format('Y'))->sum('Amount');
     $ThisMonthHomeExpenses = Expense::Where("Type_ID", "=", $Type_Name->id)->whereYear("Date", "=", now()->format('Y'))->whereMonth("Date", "=", now()->format('m'))->sum('Amount');
     return view('Expenses.Details', ['PageInfo' => $PageInfo, 'datas' => $datas, 'AllHomeExpenses' => $AllHomeExpenses, 'ThisYearHomeExpenses' => $ThisYearHomeExpenses, 'ThisMonthHomeExpenses' => $ThisMonthHomeExpenses]);
   }
+
+
+  
+    // Tribe Chart
+    public function YealyExpense_ColumnChart(string $data)
+    {
+
+      $Type_Name =   LookUp::where("Name", "=", $data)->first();
+        $jan =   Expense::where("Type_ID", "=", $Type_Name->id)->whereYear("Date", "=", now()->format('Y'))->whereMonth("Date", "=", 1)->sum('Amount');
+        $feb =   Expense::where("Type_ID", "=", $Type_Name->id)->whereYear("Date", "=", now()->format('Y'))->whereMonth("Date", "=", 2)->sum('Amount');
+        $mar =   Expense::where("Type_ID", "=", $Type_Name->id)->whereYear("Date", "=", now()->format('Y'))->whereMonth("Date", "=", 3)->sum('Amount');
+        $apr =   Expense::where("Type_ID", "=", $Type_Name->id)->whereYear("Date", "=", now()->format('Y'))->whereMonth("Date", "=", 4)->sum('Amount');
+        $may =   Expense::where("Type_ID", "=", $Type_Name->id)->whereYear("Date", "=", now()->format('Y'))->whereMonth("Date", "=", 5)->sum('Amount');
+        $jun =   Expense::where("Type_ID", "=", $Type_Name->id)->whereYear("Date", "=", now()->format('Y'))->whereMonth("Date", "=", 6)->sum('Amount');
+        $jul =   Expense::where("Type_ID", "=", $Type_Name->id)->whereYear("Date", "=", now()->format('Y'))->whereMonth("Date", "=", 7)->sum('Amount');
+        $aug =   Expense::where("Type_ID", "=", $Type_Name->id)->whereYear("Date", "=", now()->format('Y'))->whereMonth("Date", "=", 8)->sum('Amount');
+        $sep =   Expense::where("Item_ID", "=", $Type_Name->id)->whereYear("Date", "=", now()->format('Y'))->whereMonth("Date", "=", 9)->sum('Amount');
+        $oct =   Expense::where("Type_ID", "=", $Type_Name->id)->whereYear("Date", "=", now()->format('Y'))->whereMonth("Date", "=", 10)->sum('Amount');
+        $nov =   Expense::where("Type_ID", "=", $Type_Name->id)->whereYear("Date", "=", now()->format('Y'))->whereMonth("Date", "=", 11)->sum('Amount');
+        $dec =   Expense::where("Type_ID", "=", $Type_Name->id)->whereYear("Date", "=", now()->format('Y'))->whereMonth("Date", "=", 12)->sum('Amount');
+
+        return response()->json([
+            'jan' => $jan,
+            'feb' => $feb,
+            'mar' => $mar,
+            'apr' => $apr,
+            'may' => $may,
+            'jun' => $jun,
+            'jul' => $jul,
+            'aug' => $aug,
+            'sep' => $sep,
+            'oct' => $oct,
+            'nov' => $nov,
+            'dec' => $dec,
+
+
+        ]);
+    }
+
+
 }
