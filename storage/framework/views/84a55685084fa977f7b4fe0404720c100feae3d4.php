@@ -92,10 +92,10 @@
                 </tbody>
             </table>
         </div>
-        <form class="needs-validation" method="POST" enctype="multipart/form-data" id="ExportForm" novalidate>
+        <form class="needs-validation" action="<?php echo e(route('ExportExpense')); ?>" method="POST"   enctype="multipart/form-data" id="ExportForm" novalidate>
             <?php echo csrf_field(); ?>
             <input type="text" class="d-none" name="FormIds" required>
-            <a class="btn btn-outline-primary waves-effect float-end  waves-light mt-3 ExportOrphans"><i class="mdi mdi-microsoft-excel me-1"></i> Export To Excel</a>
+            <a class="btn btn-outline-primary waves-effect float-end  waves-light mt-3 ExportExpenses"><i class="mdi mdi-microsoft-excel me-1"></i> Export To Excel</a>
         </form>
     </div>
 </div>
@@ -131,81 +131,11 @@
             }
         });
     });
-    // Remove Sponsor Confirmation
-    $('.removeSponsor').on('click', function(event) {
-        event.preventDefault();
-        const url = $(this).attr('href');
-        swal({
-            title: 'Are you sure?',
-            text: 'Do you want to remove sponsr?!',
-            icon: 'warning',
-            buttons: ["Cancel", "Yes!"],
-        }).then(function(value) {
-            if (value) {
-                window.location.href = url;
-            }
-        });
-    });
-    // Search All Districts
-    $(document).ready(function() {
-        $('.Province').on('change', function() {
-            var dID = $(this).val();
-            if (dID) {
-                $.ajax({
-                    url: '/GetDistricts/' + dID,
-                    type: "GET",
-                    data: {
-                        "_token": "<?php echo e(csrf_token()); ?>"
-                    },
-                    dataType: "json",
-                    success: function(data) {
-                        if (data) {
-                            $('.District').empty();
-                            $.each(data, function(key, course) {
-                                $('select[name="District_ID"]').append('<option value="' + course.id + '">' + course.Name + '</option>');
-                            });
-                        } else {
-                            $('.District').empty();
-                        }
-                    }
-                });
-            } else {
-                $('.District').empty();
-            }
-        });
-    });
-    // Search All Districts
-    $(document).ready(function() {
-        $('.Sponsor').on('change', function() {
-            var dID = $(this).val();
-            if (dID) {
-                $.ajax({
-                    url: "",
-                    type: "GET",
-                    data: {
-                        "_token": "<?php echo e(csrf_token()); ?>",
-                        "data": dID
-                    },
-                    dataType: "json",
-                    success: function(data) {
-                        if (data) {
-                            $('.Card').empty();
-                            $.each(data, function(key, course) {
-                                $('select[name="Card_ID"]').append('<option value="' + course.id + '">******************' + course.CardLastFourDigit + '</option>');
-                            });
-                        } else {
-                            $('.Card').empty();
-                        }
-                    }
-                });
-            } else {
-                $('.Card').empty();
-            }
-        });
-    });
+
+
     // Submit form for excel
     $(document).ready(function() {
-        $('.ExportOrphans').click(function() {
+        $('.ExportExpenses').click(function() {
             ids = new Array();
             $("input[name='ids[]']:checked").each(function() {
                 ids.push(this.value);
@@ -218,6 +148,10 @@
     $("#checkAll").click(function() {
         $('input:checkbox').not(this).prop('checked', this.checked);
     });
+
+
+
+    //chart for monlthy data
     (async () => {
         const YealyExpensesConst = await fetch('<?php echo e(route('YealyExpense_ColumnChart', ['data' => $PageInfo])); ?>').then(response => response.json());
         var YealyExpenseOption = {

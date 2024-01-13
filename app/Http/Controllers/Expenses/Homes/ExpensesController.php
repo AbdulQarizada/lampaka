@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Expenses\Homes;
 
 use App\Http\Controllers\Controller;
+use App\Exports\ExpenseExport;
 use Illuminate\Http\Request;
 use App\Models\Expense;
 use App\Models\LookUp;
@@ -125,8 +126,14 @@ class ExpensesController extends Controller
   }
 
 
-  
-    // Tribe Chart
+  public function export()
+  {
+      $FormIds =  explode(',',  request('FormIds'));
+      return (new ExpenseExport($FormIds))->download('Home Expeses File' . now()->format("j F Y") . '.xlsx');
+  }
+
+
+    // Monthly Expenses Chart
     public function YealyExpense_ColumnChart(string $data)
     {
 
